@@ -1,6 +1,6 @@
 # 🇮🇹 Impariamo l'italiano
 
-Interaktivní aplikace pro výuku italštiny v češtině. Po zadání pokročilosti (A1–B2, ručně nebo vstupním testem) nabídne:
+Interaktivní aplikace pro výuku italštiny v češtině. Po zadání pokročilosti (A1–C1, ručně nebo vstupním testem) nabídne:
 
 - 🃏 **Slovíčka** – kartičky s překladem, příkladem a výslovností
 - ❓ **Kvíz** – výběr správného překladu
@@ -8,7 +8,7 @@ Interaktivní aplikace pro výuku italštiny v češtině. Po zadání pokročil
 - 📖 **Gramatika** – krátké lekce s procvičením
 - 💬 **Fráze** – užitečné věty s přehráním výslovnosti
 - ⭐ XP za nově naučená slova a lekce, 🔥 série dnů a uložený pokrok (v prohlížeči)
-- Po 40 slovíčkách, 4 lekcích a 6 frázích na každou úroveň (A1–B2); fonty jsou součástí repozitáře, žádné externí požadavky
+- Po 40 slovíčkách, 4 lekcích a 6 frázích na každou úroveň (A1–C1); fonty jsou součástí repozitáře, žádné externí požadavky
 
 ## Spuštění
 

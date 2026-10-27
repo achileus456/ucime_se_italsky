@@ -4,7 +4,7 @@ Průvodce pro Claude Code při práci na tomto projektu.
 
 ## O projektu
 **Impariamo l'italiano** – interaktivní webová aplikace pro výuku italštiny pro české uživatele.
-Uživatel si vybere pokročilost (A1–B2) ručně nebo vstupním testem (12 otázek) a dostane obsah odpovídající úrovni.
+Uživatel si vybere pokročilost (A1–C1) ručně nebo vstupním testem (15 otázek) a dostane obsah odpovídající úrovni.
 
 ## Architektura
 - Aplikace je v jediném souboru **`index.html`** (HTML + CSS + vanilla JS), bez build kroku a bez závislostí.
@@ -15,7 +15,7 @@ Uživatel si vybere pokročilost (A1–B2) ručně nebo vstupním testem (12 ot�
 
 ## Struktura `index.html`
 Skript je rozdělen komentáři `/* ====== */`:
-1. **DATA** – `LEVELS`, `WORDS`, `PHRASES`, `GRAMMAR`, `PLACEMENT` (klíče úrovní `A1|A2|B1|B2`).
+1. **DATA** – `LEVELS`, `WORDS`, `PHRASES`, `GRAMMAR`, `PLACEMENT` (klíče úrovní `A1|A2|B1|B2|C1`; pořadí v `LEVELS` určuje pořadí úrovní, test i výchozí doporučení se z něj odvozují).
 2. **STATE** – objekt `S`, `sanitize()`, `touch()` (série dnů v **místním** čase), `setMastery()/bump()` (XP za nově naučené slovo), `lessonDone()`.
 3. **HELPERS** – `esc()` (vždy escapovat vložený text!), `IT()` (obalí italský text `lang="it"`), `shuffle`, `norm`, `wordsOf`, `mcq`, `pick`, `speak`.
 4. **SHELL** – hlavička, navigace, `go(view)`.
@@ -42,7 +42,7 @@ Aplikaci stačí otevřít v prohlížeči, ale **fonty a plné chování ověř
 Po každé změně dat ověřit v konzoli prohlížeče: unikátnost slov, počet otázek (4), 3 různé možnosti v každé otázce, a projít všechny lekce a režimy.
 
 ## Nápady do budoucna
-- Úroveň C1, tematické kategorie slovíček, další lekce (trapassato, imperativ, předložky místa).
+- Úroveň C2, tematické kategorie slovíček, další lekce (trapassato, imperativ, předložky místa).
 - Spaced repetition (Leitner) místo jednoduché váhy `mastery`.
 - Poslechová cvičení a doplňování vět, časování sloves.
 - Export/import pokroku, PWA (offline), tmavý režim.

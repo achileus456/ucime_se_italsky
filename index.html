@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Impariamo l'italiano – učíme se italsky</title>
-<meta name="description" content="Interaktivní aplikace pro výuku italštiny podle vaší pokročilosti (A1–B2): slovíčka, kvíz, psaní, gramatika a fráze.">
+<meta name="description" content="Interaktivní aplikace pro výuku italštiny podle vaší pokročilosti (A1–C1): slovíčka, kvíz, psaní, gramatika a fráze.">
 <meta name="theme-color" content="#008c45">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="cs_CZ">
 <meta property="og:title" content="Impariamo l'italiano – učíme se italsky">
-<meta property="og:description" content="Interaktivní výuka italštiny pro Čechy: úrovně A1–B2, slovíčka, kvíz, psaní, gramatika a fráze.">
+<meta property="og:description" content="Interaktivní výuka italštiny pro Čechy: úrovně A1–C1, slovíčka, kvíz, psaní, gramatika a fráze.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Crect width='10' height='20' fill='%23008c45'/%3E%3Crect x='10' width='10' height='20' fill='%23fffdf7'/%3E%3Crect x='20' width='10' height='20' fill='%23cd212a'/%3E%3Crect width='30' height='20' fill='none' stroke='%23c8553d' stroke-width='1'/%3E%3C/svg%3E">
 <style>
 /* Fonty jsou součástí repozitáře (fonts/), licence SIL OFL 1.1 – viz fonts/README.md */
@@ -121,7 +121,8 @@ const LEVELS = {
   A1:{name:"Začátečník",desc:"Zdravení, základní slova, jednoduché věty."},
   A2:{name:"Mírně pokročilý",desc:"Cestování, nakupování, minulý čas."},
   B1:{name:"Středně pokročilý",desc:"Vyprávění, názory, každodenní témata."},
-  B2:{name:"Pokročilý",desc:"Složitější myšlenky, konjunktiv, podmínky."}
+  B2:{name:"Pokročilý",desc:"Složitější myšlenky, konjunktiv, podmínky."},
+  C1:{name:"Vysoce pokročilý",desc:"Nuance, formální styl, spisovné časy."}
 };
 const LEVEL_KEYS = Object.keys(LEVELS);
 
@@ -201,6 +202,28 @@ const WORDS = {
     ["cittadino","občan","Ogni cittadino ha dei diritti.","il"],["diritto","právo","È un diritto fondamentale.","il"],
     ["dovere","povinnost","Votare è un dovere.","il"],["sebbene","ačkoli","Sebbene sia stanco, continuo."],
     ["purché","pokud jen, za podmínky že","Vengo purché sia gratis."],["affinché","aby","Lo spiego affinché capiate."]
+  ],
+  C1:[
+    ["ciononostante","přesto, i tak","Ciononostante, abbiamo deciso di continuare."],["peraltro","ostatně, jinak","Peraltro, non era la prima volta."],
+    ["pertanto","proto, tedy","Non ho tempo, pertanto rinuncio."],["nondimeno","nicméně (spisovně)","Nondimeno, il risultato è positivo."],
+    ["inevitabile","nevyhnutelný","Il cambiamento è inevitabile."],["emergere","vynořit se, vyjít najevo","Dall'indagine è emersa la verità."],
+    ["sottolineare","zdůraznit","Vorrei sottolineare un punto importante."],["attuare","provést, uskutečnit","Il governo ha attuato la riforma."],
+    ["perseguire","sledovat (cíl), usilovat","Persegue i suoi obiettivi con determinazione."],["compromesso","kompromis","Abbiamo trovato un compromesso.","il"],
+    ["dibattito","debata","Il dibattito è stato animato.","il"],["sostenere","podporovat, tvrdit","Sostiene che sia una buona idea."],
+    ["smentire","vyvrátit, popřít","Il ministro ha smentito la notizia."],["vincolo","omezení, závazek","Ci sono dei vincoli di bilancio.","il"],
+    ["prospettiva","perspektiva, vyhlídka","Cambia prospettiva e vedrai.","la"],["rilevante","významný, relevantní","È un dato rilevante."],
+    ["sostanziale","podstatný, výrazný","C'è una differenza sostanziale."],["trascurare","zanedbávat","Non trascurare la tua salute."],
+    ["mettere in discussione","zpochybnit","Mette sempre tutto in discussione."],["tenere conto di","brát v úvahu","Bisogna tenere conto di tutti i fattori."],
+    ["fare fronte a","čelit, zvládat","Dobbiamo far fronte a molte spese."],["rendersi conto","uvědomit si","Mi sono reso conto dell'errore."],
+    ["mantenere","udržet, dodržet","Ha mantenuto la promessa."],["lungimirante","prozíravý","È una persona lungimirante."],
+    ["scrupoloso","svědomitý, pečlivý","È un lavoratore scrupoloso."],["testardo","tvrdohlavý","Sei troppo testardo!"],
+    ["insolito","neobvyklý","Un comportamento insolito."],["inaspettato","nečekaný","Un risultato inaspettato."],
+    ["prova","důkaz, zkouška","Non ci sono prove.","la"],["indagine","vyšetřování, průzkum","L'indagine è ancora in corso.","l'"],
+    ["riforma","reforma","La riforma della scuola è controversa.","la"],["sovvenzione","dotace","Ha ricevuto una sovvenzione pubblica.","la"],
+    ["bilancio","rozpočet, bilance","Il bilancio dello Stato è in deficit.","il"],["inquinamento","znečištění","L'inquinamento è un problema globale.","l'"],
+    ["superare","překonat","Ha superato tutte le difficoltà."],["gettare la spugna","vzdát se","Non voglio gettare la spugna."],
+    ["al fine di","za účelem, aby","Al fine di migliorare il servizio, abbiamo assunto personale."],["ovvero","neboli, to jest","Il capoluogo lombardo, ovvero Milano, è molto grande."],
+    ["bensì","nýbrž","Non è un problema, bensì un'opportunità."],["pretendere","požadovat","Pretende troppo da se stesso."]
   ]
 };
 
@@ -208,7 +231,8 @@ const PHRASES = {
   A1:[["Mi chiamo Anna.","Jmenuji se Anna."],["Come stai?","Jak se máš?"],["Non capisco.","Nerozumím."],["Parli inglese?","Mluvíš anglicky?"],["Buonanotte!","Dobrou noc!"],["Quanto costa?","Kolik to stojí?"]],
   A2:[["Dov'è la stazione?","Kde je nádraží?"],["Vorrei prenotare un tavolo.","Chtěl bych rezervovat stůl."],["Può ripetere, per favore?","Můžete to zopakovat, prosím?"],["Ho bisogno di aiuto.","Potřebuji pomoc."],["A che ora parte il treno?","V kolik jede vlak?"],["Mi sono perso.","Ztratil jsem se."]],
   B1:[["Secondo me hai ragione.","Podle mě máš pravdu."],["Mi dispiace, sono in ritardo.","Omlouvám se, mám zpoždění."],["Non vedo l'ora di vederti.","Nemůžu se dočkat, až tě uvidím."],["Che ne pensi?","Co si o tom myslíš?"],["Dipende dalla situazione.","Záleží na situaci."],["Ci vediamo presto.","Brzy na viděnou."]],
-  B2:[["A mio avviso, la situazione sta migliorando.","Podle mého názoru se situace zlepšuje."],["Non è detto che sia vero.","Není řečeno, že je to pravda."],["Se potessi, lo farei volentieri.","Kdybych mohl, rád bych to udělal."],["Mi è sfuggito il senso del discorso.","Unikl mi smysl rozhovoru."],["Avrei preferito saperlo prima.","Byl bych býval raději věděl dřív."],["In fin dei conti, ne è valsa la pena.","Nakonec to stálo za to."]]
+  B2:[["A mio avviso, la situazione sta migliorando.","Podle mého názoru se situace zlepšuje."],["Non è detto che sia vero.","Není řečeno, že je to pravda."],["Se potessi, lo farei volentieri.","Kdybych mohl, rád bych to udělal."],["Mi è sfuggito il senso del discorso.","Unikl mi smysl rozhovoru."],["Avrei preferito saperlo prima.","Byl bych býval raději věděl dřív."],["In fin dei conti, ne è valsa la pena.","Nakonec to stálo za to."]],
+  C1:[["Per quanto mi riguarda, non ci sono obiezioni.","Pokud jde o mě, nemám námitky."],["Sono dell'idea che si debba intervenire subito.","Jsem toho názoru, že je třeba zasáhnout hned."],["Detto ciò, resta una questione aperta.","Řečeno tohle, zůstává otevřená otázka."],["Non posso fare a meno di notare l'ironia.","Nemohu si nevšimnout té ironie."],["A ben vedere, la soluzione era semplice.","Při bližším pohledu bylo řešení jednoduché."],["Salvo imprevisti, ci vediamo domani.","Pokud se nic nepokazí, uvidíme se zítra."]]
 };
 
 /* kvízová otázka = [otázka, SPRÁVNÁ odpověď, špatná1, špatná2] – pořadí se míchá při zobrazení */
@@ -325,6 +349,33 @@ const GRAMMAR = {
       <tr><td><em>il quale</em></td><td>formálnější náhrada, shoduje se v rodě a čísle: <em>la persona con la quale parlo</em></td></tr></table>
       <p>Pozor: po <em>che</em> se předložka nikdy nedává (<em>che</em> × <em>di che</em> neexistuje).</p>`,
       quiz:[["Il libro ___ ho letto è bello.","che","cui","chi"],["La ragazza di ___ ti ho parlato è mia sorella.","cui","che","quale"],["La città in ___ vivo è piccola.","cui","che","chi"],["L'amico con ___ viaggio è italiano.","cui","che","chi"]]}
+  ],
+  C1:[
+    {title:"Souslednost časů: congiuntivo imperfetto a trapassato",html:`<p>Čas konjunktivu se řídí hlavní větou:</p>
+      <table><tr><th>hlavní věta</th><th>současně</th><th>dříve</th></tr>
+      <tr><td>přítomnost</td><td><em>Penso che sia tardi.</em> (congiuntivo presente)</td><td><em>Penso che sia partito.</em> (congiuntivo passato)</td></tr>
+      <tr><td>minulost / condizionale</td><td><em>Pensavo che fosse tardi.</em> (congiuntivo imperfetto)</td><td><em>Pensavo che fosse partito.</em> (congiuntivo trapassato)</td></tr></table>
+      <p><em>Vorrei che tu venissi con me. Credevo che avesse ragione.</em></p>
+      <p>Congiuntivo imperfetto: -are → <em>-assi, -assi, -asse, -assimo, -aste, -assero</em>; -ere → <em>-essi…</em>; -ire → <em>-issi…</em>. Nepravidelné: essere → <em>fossi</em>, fare → <em>facessi</em>, dire → <em>dicessi</em>, stare → <em>stessi</em>.</p>`,
+      quiz:[["Pensavo che lui ___ ragione.","avesse","abbia","ha"],["Credevo che lei ___ già partita.","fosse","sia","era"],["Vorrei che tu ___ con me. (venire)","venissi","venga","verresti"],["Penso che lei ___ già partita. (odjela už)","sia","fosse","è"]]},
+    {title:"Passato remoto",html:`<p>Používá se v literatuře, ve vyprávění o vzdálené minulosti a v mluvě jižní Itálie: <em>Dante nacque a Firenze nel 1265.</em></p>
+      <table><tr><th></th><th>parlare</th><th>essere</th><th>avere</th></tr>
+      <tr><td>io</td><td>parl<em>ai</em></td><td><em>fui</em></td><td><em>ebbi</em></td></tr><tr><td>tu</td><td>parl<em>asti</em></td><td><em>fosti</em></td><td>av<em>esti</em></td></tr>
+      <tr><td>lui/lei</td><td>parl<em>ò</em></td><td><em>fu</em></td><td><em>ebbe</em></td></tr><tr><td>noi</td><td>parl<em>ammo</em></td><td><em>fummo</em></td><td>av<em>emmo</em></td></tr>
+      <tr><td>voi</td><td>parl<em>aste</em></td><td><em>foste</em></td><td>av<em>este</em></td></tr><tr><td>loro</td><td>parl<em>arono</em></td><td><em>furono</em></td><td><em>ebbero</em></td></tr></table>
+      <p>Další nepravidelná (3. os. j. č.): andare → <em>andò</em>, fare → <em>fece</em>, dire → <em>disse</em>, nascere → <em>nacque</em>, vedere → <em>vide</em>, venire → <em>venne</em>.</p>`,
+      quiz:[["Dante ___ a Firenze nel 1265. (nascere – passato remoto)","nacque","nasceva","nascerà"],["Io ___ a Roma nel 1990. (essere – passato remoto)","fui","fosse","sarò"],["Lui ___ la verità. (dire – passato remoto)","disse","dice","dirà"],["Passato remoto od avere (io):","ebbi","avevo","avrò"]]},
+    {title:"Gerundio",html:`<p>Gerundio se tvoří: -are → <em>-ando</em>, -ere/-ire → <em>-endo</em> (parlando, vendendo, dormendo). Nepravidelné: fare → <em>facendo</em>, dire → <em>dicendo</em>, bere → <em>bevendo</em>.</p>
+      <ul><li><em>stare + gerundio</em> = probíhající děj: <em>Sto leggendo un libro.</em></li>
+      <li>vedlejší věta časová, příčinná nebo způsobová: <em>Attraversando la strada, ho incontrato Luca.</em> / <em>Studiando si impara.</em></li>
+      <li>minulé: <em>avendo / essendo</em> + příčestí: <em>Avendo finito, sono uscito.</em></li></ul>
+      <p>Pozor: podmět gerundia je zpravidla stejný jako podmět hlavní věty.</p>`,
+      quiz:[["Sto ___ un libro. (leggere)","leggendo","leggando","letto"],["Lei sta ___ la cena. (preparare)","preparando","preparendo","preparata"],["___ la strada, ho incontrato Luca. (attraversare)","Attraversando","Attraversendo","Attraversare"],["Gerundio od fare:","facendo","fando","facando"]]},
+    {title:"Neosobní a pasivní si",html:`<p><em>Si</em> + 3. osoba vyjadřuje neosobní děj („se, člověk“):</p>
+      <ul><li>Neosobní: <em>In Italia si mangia bene.</em> <em>Non si sa mai.</em></li>
+      <li>Pasivní <em>si</em>: sloveso se shoduje s předmětem – <em>Qui si parla italiano.</em> (j. č.), <em>Si vendono case.</em> (mn. č.)</li></ul>
+      <p>V passato prossimo se vždy používá <em>essere</em>: <em>Si è detto molto.</em></p>`,
+      quiz:[["Qui ___ italiano. (Tady se mluví italsky.)","si parla","si parlano","si parlo"],["In questo negozio ___ scarpe. (Prodávají se boty.)","si vendono","si vende","si vendiamo"],["In Italia ___ bene. (Jí se dobře.)","si mangia","si mangiano","si mangi"],["Non ___ mai! (Člověk nikdy neví!)","si sa","si sanno","si so"]]}
   ]
 };
 
@@ -341,7 +392,10 @@ const PLACEMENT = [
   ["B1","Mentre ___ la cena, è squillato il telefono.","preparavo","ho preparato","preparerò"],
   ["B2","Penso che lui ___ ragione.","abbia","ha","avrà"],
   ["B2","Se avessi saputo, ___ venuto.","sarei","sono","ero"],
-  ["B2","Se avessi tempo, ___ di più.","leggerei","leggo","leggessi"]
+  ["B2","Se avessi tempo, ___ di più.","leggerei","leggo","leggessi"],
+  ["C1","Pensavo che lui ___ già partito.","fosse","sia","era"],
+  ["C1","Non è un problema, ___ un'opportunità.","bensì","benché","perciò"],
+  ["C1","Dante ___ a Firenze nel 1265. (passato remoto)","nacque","nasceva","nascerà"]
 ];
 
 /* ============ STATE ============ */
@@ -465,7 +519,7 @@ function levelPicker(m, cur){
 }
 
 let PT = null;
-function placeLevel(b){ for (const L of LEVEL_KEYS) if (b[L] < 2) return L; return "B2"; }
+function placeLevel(b){ for (const L of LEVEL_KEYS) if (b[L] < 2) return L; return LEVEL_KEYS[LEVEL_KEYS.length-1]; }
 function placementStep(m){
   if (PT.i >= PT.items.length){
     const lvl = placeLevel(PT.bands), total = Object.values(PT.bands).reduce((a,b)=>a+b,0);
@@ -603,7 +657,7 @@ document.addEventListener("click", e => {
     case "changeLevel": view = "home"; renderNav(); levelPicker(m, S.level); m.focus({preventScroll:true}); break;
     case "pick": if (!has(LEVELS,d.l)) break; S.level = d.l; save(); go("home"); break;
     case "placement":
-      PT = {i:0, bands:{A1:0,A2:0,B1:0,B2:0}, items:PLACEMENT.map(([lvl,q,c,...w]) => ({lvl, ...mcq([q,c,...w])}))};
+      PT = {i:0, bands:Object.fromEntries(LEVEL_KEYS.map(k => [k,0])), items:PLACEMENT.map(([lvl,q,c,...w]) => ({lvl, ...mcq([q,c,...w])}))};
       placementStep(m); break;
     case "ptAns": { const q = PT.items[PT.i]; if (q.opts[+d.i].ok) PT.bands[q.lvl]++; PT.i++; placementStep(m); break; }
     case "ptSkip": PT.i++; placementStep(m); break;
