@@ -4,13 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Impariamo l'italiano – učíme se italsky</title>
-<meta name="description" content="Interaktivní aplikace pro výuku italštiny podle vaší pokročilosti (A1–B2).">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<meta name="description" content="Interaktivní aplikace pro výuku italštiny podle vaší pokročilosti (A1–B2): slovíčka, kvíz, psaní, gramatika a fráze.">
+<meta name="theme-color" content="#008c45">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:title" content="Impariamo l'italiano – učíme se italsky">
+<meta property="og:description" content="Interaktivní výuka italštiny pro Čechy: úrovně A1–B2, slovíčka, kvíz, psaní, gramatika a fráze.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Crect width='10' height='20' fill='%23008c45'/%3E%3Crect x='10' width='10' height='20' fill='%23fffdf7'/%3E%3Crect x='20' width='10' height='20' fill='%23cd212a'/%3E%3Crect width='30' height='20' fill='none' stroke='%23c8553d' stroke-width='1'/%3E%3C/svg%3E">
 <style>
+/* Fonty jsou součástí repozitáře (fonts/), licence SIL OFL 1.1 – viz fonts/README.md */
+@font-face{font-family:'Nunito';font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/nunito-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Nunito';font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/nunito-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:600 800;font-display:swap;src:url(fonts/playfair-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:600 800;font-display:swap;src:url(fonts/playfair-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Playfair Display';font-style:italic;font-weight:500 600;font-display:swap;src:url(fonts/playfair-italic-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Playfair Display';font-style:italic;font-weight:500 600;font-display:swap;src:url(fonts/playfair-italic-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
 :root{
-  --cream:#fbf6ea; --paper:#fffdf7; --ink:#2b2118; --muted:#7a6a58;
+  --cream:#fbf6ea; --paper:#fffdf7; --ink:#2b2118; --muted:#6f5f4d;
   --green:#008c45; --green-d:#006b35; --red:#cd212a; --red-d:#a31a21;
   --terra:#c8553d; --gold:#d9a441; --line:#e6dbc4;
   --serif:'Playfair Display',Georgia,'Times New Roman',serif;
@@ -19,14 +30,17 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;
   background-image:radial-gradient(circle at 1px 1px,rgba(200,85,61,.08) 1px,transparent 0);background-size:22px 22px}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+main:focus{outline:none}
 .tricolore{height:8px;background:linear-gradient(90deg,var(--green) 0 33.33%,#fff 33.33% 66.66%,var(--red) 66.66%);border-bottom:1px solid var(--line)}
 header{max-width:960px;margin:0 auto;padding:22px 16px 8px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
 .brand h1{font-family:var(--serif);font-weight:800;font-size:clamp(1.6rem,4vw,2.2rem);margin:0;line-height:1.1}
 .brand h1 span{color:var(--red)}
 .brand p{margin:2px 0 0;color:var(--muted);font-style:italic;font-family:var(--serif)}
 .stats{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.chip{background:var(--paper);border:1.5px solid var(--line);border-radius:999px;padding:4px 12px;font-weight:700;font-size:.9rem;white-space:nowrap}
-.chip.lvl{border-color:var(--green);color:var(--green-d);cursor:pointer}
+.chip{font:inherit;color:inherit;background:var(--paper);border:1.5px solid var(--line);border-radius:999px;padding:4px 12px;font-weight:700;font-size:.9rem;white-space:nowrap}
+button.chip.lvl{border-color:var(--green);color:var(--green-d);cursor:pointer}
+button.chip.lvl:hover{background:#e8f4ec}
 nav{max-width:960px;margin:8px auto 0;padding:0 16px;display:flex;gap:6px;overflow-x:auto;border-bottom:2px solid var(--line)}
 nav button{font:inherit;font-weight:700;background:none;border:0;padding:10px 14px;cursor:pointer;color:var(--muted);border-bottom:4px solid transparent;margin-bottom:-2px;white-space:nowrap}
 nav button:hover{color:var(--ink)}
@@ -41,9 +55,11 @@ h3{font-family:var(--serif);margin:0 0 6px}
 .btn:hover{background:var(--green-d)} .btn:active{transform:translateY(1px)}
 .btn.red{background:var(--red);border-color:var(--red)} .btn.red:hover{background:var(--red-d)}
 .btn.ghost{background:transparent;color:var(--green-d)} .btn.ghost:hover{background:#e8f4ec}
+.btn.small{padding:6px 12px;font-size:.9rem}
 .btn:disabled{opacity:.5;cursor:default}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .center{text-align:center;justify-content:center}
+.nosound .sp{display:none}
 /* level picker */
 .level{cursor:pointer;text-align:left;font:inherit;color:inherit;transition:transform .12s,border-color .12s}
 .level:hover{transform:translateY(-3px);border-color:var(--terra)}
@@ -57,11 +73,12 @@ h3{font-family:var(--serif);margin:0 0 6px}
 .arch .cs{font-size:1.5rem;color:var(--green-d);font-weight:700}
 .arch .ex{font-style:italic;color:var(--muted);font-size:.95rem}
 .arch .hint{color:var(--muted);font-size:.9rem}
-.tag{display:inline-block;background:#f3e6c9;color:#7a5a1a;border-radius:6px;padding:0 8px;font-size:.8rem;font-weight:700}
+.tag{display:inline-block;background:#f3e6c9;color:#6d4f12;border-radius:6px;padding:0 8px;font-size:.8rem;font-weight:700}
 /* options */
 .opts{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin:14px 0}
 .opt{font:inherit;font-weight:700;background:var(--paper);border:2px solid var(--line);border-radius:12px;padding:12px;cursor:pointer;text-align:center}
 .opt:hover:not(:disabled){border-color:var(--terra)}
+.opt:disabled{color:inherit;cursor:default}
 .opt.ok{background:#e1f3e7;border-color:var(--green)} .opt.bad{background:#fbe4e5;border-color:var(--red)}
 .qword{font-family:var(--serif);font-size:2rem;font-weight:800;text-align:center;margin:8px 0}
 .progress{height:10px;background:var(--line);border-radius:6px;overflow:hidden}
@@ -70,15 +87,21 @@ input[type=text]{font:inherit;width:100%;max-width:360px;padding:10px 14px;borde
 input[type=text]:focus{outline:none;border-color:var(--green)}
 .fb{min-height:1.6em;font-weight:700;margin:8px 0}
 .fb.ok{color:var(--green-d)} .fb.bad{color:var(--red-d)}
-.lesson p,.lesson li{margin:6px 0} .lesson table{border-collapse:collapse;margin:10px 0}
+.lesson p,.lesson li{margin:6px 0} .lesson table{border-collapse:collapse;margin:10px 0;display:block;overflow-x:auto}
 .lesson td,.lesson th{border:1px solid var(--line);padding:5px 12px;text-align:left} .lesson th{background:#f3e6c9}
 .lesson em{color:var(--red-d)}
 .phrase{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line)}
-.phrase:last-child{border:0} .phrase b{font-family:var(--serif);font-size:1.15rem} .phrase span{color:var(--muted);display:block}
+.phrase:last-child{border:0} .phrase b{font-family:var(--serif);font-size:1.15rem} .phrase span.cz{color:var(--muted);display:block}
 .speak{font-size:1.2rem;padding:6px 10px}
 .q{margin:18px 0 6px;font-weight:700}
+.big{font-family:var(--serif);font-size:2rem;font-weight:800;line-height:1.2}
 footer{text-align:center;color:var(--muted);font-size:.85rem;padding:20px 16px 40px;font-family:var(--serif);font-style:italic}
-@media(max-width:520px){.arch{border-radius:150px 150px 18px 18px;padding-top:44px}}
+@media(max-width:600px){
+  nav{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;overflow:visible;border-bottom:0}
+  nav button{padding:8px 4px;font-size:.9rem;border:2px solid var(--line);border-radius:10px;margin:0;background:var(--paper)}
+  nav button[aria-current="page"]{border-color:var(--red);background:#fdeeee}
+  .arch{border-radius:150px 150px 18px 18px;padding-top:44px}
+}
 </style>
 </head>
 <body>
@@ -88,7 +111,7 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;padding:20px 16px 4
   <div class="stats" id="stats"></div>
 </header>
 <nav id="nav" aria-label="Hlavní navigace"></nav>
-<main id="main"></main>
+<main id="main" tabindex="-1"></main>
 <footer>Fatto con amore · Studiare ogni giorno, un po' alla volta 🇮🇹</footer>
 
 <script>
@@ -100,49 +123,95 @@ const LEVELS = {
   B1:{name:"Středně pokročilý",desc:"Vyprávění, názory, každodenní témata."},
   B2:{name:"Pokročilý",desc:"Složitější myšlenky, konjunktiv, podmínky."}
 };
+const LEVEL_KEYS = Object.keys(LEVELS);
+
+/* slovíčko = [italsky, česky, příklad, člen (volitelně)] – NEPŘEŘAZOVAT, nová jen na konec */
 const WORDS = {
   A1:[
     ["ciao","ahoj","Ciao, come stai?"],["grazie","děkuji","Grazie mille!"],["per favore","prosím","Un caffè, per favore."],
-    ["acqua","voda","Vorrei un bicchiere d'acqua."],["pane","chleba","Il pane è fresco."],["casa","dům, domov","La mia casa è piccola."],
-    ["gatto","kočka","Il gatto dorme."],["cane","pes","Il cane corre nel parco."],["mela","jablko","Mangio una mela."],
-    ["latte","mléko","Bevo il latte la mattina."],["amico","přítel","Marco è il mio amico."],["libro","kniha","Leggo un libro."],
-    ["sole","slunce","Oggi c'è il sole."],["mare","moře","Andiamo al mare."],["città","město","Roma è una bella città."],["scuola","škola","I bambini vanno a scuola."]
+    ["acqua","voda","Vorrei un bicchiere d'acqua.","l'"],["pane","chleba","Il pane è fresco.","il"],["casa","dům, domov","La mia casa è piccola.","la"],
+    ["gatto","kočka","Il gatto dorme.","il"],["cane","pes","Il cane corre nel parco.","il"],["mela","jablko","Mangio una mela.","la"],
+    ["latte","mléko","Bevo il latte la mattina.","il"],["amico","přítel","Marco è il mio amico.","l'"],["libro","kniha","Leggo un libro.","il"],
+    ["sole","slunce","Oggi c'è il sole.","il"],["mare","moře","Andiamo al mare.","il"],["città","město","Roma è una bella città.","la"],["scuola","škola","I bambini vanno a scuola.","la"],
+    ["buongiorno","dobrý den","Buongiorno, signora!"],["arrivederci","na shledanou","Arrivederci a domani!"],["sì","ano","Sì, volentieri."],
+    ["no","ne","No, grazie."],["scusi","promiňte (vykání)","Scusi, dov'è il bagno?"],["mamma","maminka","La mamma cucina.","la"],
+    ["papà","tatínek","Il papà lavora.","il"],["fratello","bratr","Mio fratello ha dieci anni.","il"],["sorella","sestra","Mia sorella studia.","la"],
+    ["ragazzo","chlapec, přítel","Il ragazzo gioca a calcio.","il"],["ragazza","dívka, přítelkyně","La ragazza canta.","la"],["uomo","muž, člověk","L'uomo legge il giornale.","l'"],
+    ["donna","žena","La donna è alta.","la"],["bambino","dítě, chlapeček","Il bambino ride.","il"],["giorno","den","Che bel giorno!","il"],
+    ["notte","noc","Buona notte!","la"],["colazione","snídaně","La colazione è alle otto.","la"],["caffè","káva","Un caffè, per favore.","il"],
+    ["pizza","pizza","La pizza è buona.","la"],["rosso","červený","La mela è rossa."],["grande","velký","La casa è grande."],
+    ["piccolo","malý","Il gatto è piccolo."],["bello","krásný","Che bello!"],["mangiare","jíst","Mi piace mangiare."]
   ],
   A2:[
-    ["biglietto","lístek","Un biglietto per Milano, per favore."],["stazione","nádraží","La stazione è vicina."],
-    ["conto","účet","Il conto, per favore."],["camera","pokoj","Ho prenotato una camera doppia."],
-    ["chiave","klíč","Ho perso la chiave."],["viaggio","cesta, výlet","Buon viaggio!"],["valigia","kufr","La valigia è pesante."],
-    ["negozio","obchod","Il negozio apre alle nove."],["prezzo","cena","Qual è il prezzo?"],["medico","lékař","Devo chiamare il medico."],
-    ["farmacia","lékárna","La farmacia è chiusa."],["settimana","týden","Una settimana fa."],["compleanno","narozeniny","Oggi è il mio compleanno."],
-    ["regalo","dárek","Questo regalo è per te."],["strada","ulice, cesta","La strada è lunga."],["aeroporto","letiště","L'aeroporto è lontano."]
+    ["biglietto","lístek","Un biglietto per Milano, per favore.","il"],["stazione","nádraží","La stazione è vicina.","la"],
+    ["conto","účet","Il conto, per favore.","il"],["camera","pokoj","Ho prenotato una camera doppia.","la"],
+    ["chiave","klíč","Ho perso la chiave.","la"],["viaggio","cesta, výlet","Buon viaggio!","il"],["valigia","kufr","La valigia è pesante.","la"],
+    ["negozio","obchod","Il negozio apre alle nove.","il"],["prezzo","cena","Qual è il prezzo?","il"],["medico","lékař","Devo chiamare il medico.","il"],
+    ["farmacia","lékárna","La farmacia è chiusa.","la"],["settimana","týden","Una settimana fa.","la"],["compleanno","narozeniny","Oggi è il mio compleanno.","il"],
+    ["regalo","dárek","Questo regalo è per te.","il"],["strada","ulice, cesta","La strada è lunga.","la"],["aeroporto","letiště","L'aeroporto è lontano.","l'"],
+    ["albergo","hotel","Dormiamo in un albergo.","l'"],["prenotare","rezervovat","Voglio prenotare un tavolo."],["treno","vlak","Il treno parte alle dieci.","il"],
+    ["autobus","autobus","L'autobus è in ritardo.","l'"],["macchina","auto","La macchina è nuova.","la"],["mappa","mapa","Ho una mappa della città.","la"],
+    ["destra","vpravo, pravá strana","Gira a destra."],["sinistra","vlevo, levá strana","Il bagno è a sinistra."],["dritto","rovně","Vai sempre dritto."],
+    ["vicino","blízko, poblíž","La banca è vicino."],["lontano","daleko","Il mare è lontano."],["pranzo","oběd","Il pranzo è pronto.","il"],
+    ["cena","večeře","La cena è alle otto.","la"],["cameriere","číšník","Il cameriere porta il menu.","il"],["menu","jídelní lístek","Posso avere il menu?","il"],
+    ["pagare","platit","Pago con la carta."],["comprare","koupit","Voglio comprare un regalo."],["vendere","prodávat","Vendono frutta e verdura."],
+    ["vestito","šaty, oblek","Che bel vestito!","il"],["scarpe","boty","Le scarpe sono nuove.","le"],["freddo","chladný, zima","Oggi fa freddo."],
+    ["caldo","teplý, horko","In estate fa caldo."],["pioggia","déšť","La pioggia non smette.","la"],["mal di testa","bolest hlavy","Ho mal di testa.","il"]
   ],
   B1:[
-    ["ambiente","životní prostředí","Dobbiamo proteggere l'ambiente."],["esperienza","zkušenost","Ho molta esperienza."],
-    ["consiglio","rada","Ti do un consiglio."],["riunione","schůzka, porada","La riunione è alle tre."],
-    ["stipendio","plat","Lo stipendio arriva a fine mese."],["sviluppo","vývoj, rozvoj","Lo sviluppo del progetto è lento."],
+    ["ambiente","životní prostředí","Dobbiamo proteggere l'ambiente.","l'"],["esperienza","zkušenost","Ho molta esperienza.","l'"],
+    ["consiglio","rada","Ti do un consiglio.","il"],["riunione","schůzka, porada","La riunione è alle tre.","la"],
+    ["stipendio","plat","Lo stipendio arriva a fine mese.","lo"],["sviluppo","vývoj, rozvoj","Lo sviluppo del progetto è lento.","lo"],
     ["ricordare","pamatovat si","Non ricordo il suo nome."],["cercare","hledat","Cerco un appartamento."],
     ["riuscire","podařit se, zvládnout","Non riesco a dormire."],["sembrare","zdát se","Sembra una buona idea."],
-    ["litigare","hádat se","Non voglio litigare con te."],["sciopero","stávka","Domani c'è lo sciopero dei treni."],
-    ["traffico","doprava, provoz","C'è molto traffico."],["paesaggio","krajina","Che paesaggio magnifico!"],
-    ["abitudine","zvyk","È una brutta abitudine."],["scegliere","vybrat si","Devo scegliere un regalo."]
+    ["litigare","hádat se","Non voglio litigare con te."],["sciopero","stávka","Domani c'è lo sciopero dei treni.","lo"],
+    ["traffico","doprava, provoz","C'è molto traffico.","il"],["paesaggio","krajina","Che paesaggio magnifico!","il"],
+    ["abitudine","zvyk","È una brutta abitudine.","l'"],["scegliere","vybrat si","Devo scegliere un regalo."],
+    ["colloquio","pohovor, rozhovor","Domani ho un colloquio di lavoro.","il"],["candidato","uchazeč","Il candidato è preparato.","il"],
+    ["azienda","firma, podnik","Lavoro in un'azienda grande.","l'"],["collega","kolega, kolegyně","Il mio collega è simpatico.","il"],
+    ["obiettivo","cíl","Il mio obiettivo è imparare l'italiano.","l'"],["risultato","výsledek","Sono contento del risultato.","il"],
+    ["decidere","rozhodnout se","Devo decidere entro domani."],["dimenticare","zapomenout","Ho dimenticato le chiavi."],
+    ["spiegare","vysvětlit","Può spiegare meglio?"],["preoccuparsi","dělat si starosti","Non preoccuparti!"],
+    ["arrabbiarsi","rozzlobit se","Si arrabbia facilmente."],["incontrare","potkat, setkat se","Ho incontrato un vecchio amico."],
+    ["partecipare","zúčastnit se","Vorrei partecipare al corso."],["salute","zdraví","La salute è importante.","la"],
+    ["stress","stres","Ho molto stress al lavoro.","lo"],["affitto","nájem","L'affitto è troppo alto.","l'"],
+    ["vicino di casa","soused","Il mio vicino di casa è gentile.","il"],["quartiere","čtvrť","Abito in un bel quartiere.","il"],
+    ["notizia","zpráva, novinka","Ho una buona notizia.","la"],["giornale","noviny","Leggo il giornale ogni mattina.","il"],
+    ["mancare","chybět","Mi manca la mia famiglia."],["succedere","stát se","Cosa è successo?"],
+    ["sicuro","jistý, bezpečný","Sono sicuro di sì."],["difficile","obtížný","L'esame è difficile."]
   ],
   B2:[
     ["nonostante","navzdory","Nonostante la pioggia, siamo usciti."],["tuttavia","nicméně","Tuttavia, non sono d'accordo."],
     ["raggiungere","dosáhnout","Voglio raggiungere i miei obiettivi."],["affrontare","čelit, řešit","Dobbiamo affrontare il problema."],
-    ["sfida","výzva","È una grande sfida."],["conseguenza","důsledek","Le conseguenze sono gravi."],
-    ["fiducia","důvěra","Ho fiducia in te."],["vantaggio","výhoda","Questo è un vantaggio enorme."],
-    ["disoccupazione","nezaměstnanost","La disoccupazione è in calo."],["sostenibile","udržitelný","Un turismo sostenibile."],
-    ["ottenere","získat","Ha ottenuto una promozione."],["rimpianto","lítost","Non ho rimpianti."],
-    ["proposta","návrh","Accetto la tua proposta."],["confronto","srovnání, diskuse","Un confronto aperto."],
-    ["incarico","úkol, pověření","Mi hanno dato un nuovo incarico."],["ambizioso","ambiciózní","Un progetto molto ambizioso."]
+    ["sfida","výzva","È una grande sfida.","la"],["conseguenza","důsledek","Le conseguenze sono gravi.","la"],
+    ["fiducia","důvěra","Ho fiducia in te.","la"],["vantaggio","výhoda","Questo è un vantaggio enorme.","il"],
+    ["disoccupazione","nezaměstnanost","La disoccupazione è in calo.","la"],["sostenibile","udržitelný","Un turismo sostenibile."],
+    ["ottenere","získat","Ha ottenuto una promozione."],["rimpianto","lítost","Non ho rimpianti.","il"],
+    ["proposta","návrh","Accetto la tua proposta.","la"],["confronto","srovnání, diskuse","Un confronto aperto.","il"],
+    ["incarico","úkol, pověření","Mi hanno dato un nuovo incarico.","l'"],["ambizioso","ambiciózní","Un progetto molto ambizioso."],
+    ["svantaggio","nevýhoda","Ha qualche svantaggio.","lo"],["previsione","předpověď, odhad","Le previsioni sono ottimistiche.","la"],
+    ["tendenza","trend, sklon","C'è una tendenza al rialzo.","la"],["ricerca","výzkum, hledání","La ricerca scientifica è fondamentale.","la"],
+    ["scoperta","objev","È una scoperta importante.","la"],["sviluppare","rozvíjet","Vogliamo sviluppare nuove idee."],
+    ["promuovere","podporovat, povýšit","Il governo promuove il turismo."],["valutare","posoudit, ohodnotit","Dobbiamo valutare i rischi."],
+    ["rischio","riziko","Il rischio è alto.","il"],["responsabilità","odpovědnost","Si assume la responsabilità.","la"],
+    ["coinvolgere","zapojit","Voglio coinvolgere tutti."],["realizzare","uskutečnit","Ha realizzato il suo sogno."],
+    ["lamentarsi","stěžovat si","Si lamenta sempre del tempo."],["approfittare","využít","Approfitto dell'occasione."],
+    ["comportamento","chování","Il suo comportamento è strano.","il"],["pregiudizio","předsudek","Non ho pregiudizi.","il"],
+    ["occupazione","zaměstnání, zaměstnanost","L'occupazione giovanile è bassa.","l'"],["spesa pubblica","veřejné výdaje","Bisogna ridurre la spesa pubblica.","la"],
+    ["cittadino","občan","Ogni cittadino ha dei diritti.","il"],["diritto","právo","È un diritto fondamentale.","il"],
+    ["dovere","povinnost","Votare è un dovere.","il"],["sebbene","ačkoli","Sebbene sia stanco, continuo."],
+    ["purché","pokud jen, za podmínky že","Vengo purché sia gratis."],["affinché","aby","Lo spiego affinché capiate."]
   ]
 };
+
 const PHRASES = {
   A1:[["Mi chiamo Anna.","Jmenuji se Anna."],["Come stai?","Jak se máš?"],["Non capisco.","Nerozumím."],["Parli inglese?","Mluvíš anglicky?"],["Buonanotte!","Dobrou noc!"],["Quanto costa?","Kolik to stojí?"]],
   A2:[["Dov'è la stazione?","Kde je nádraží?"],["Vorrei prenotare un tavolo.","Chtěl bych rezervovat stůl."],["Può ripetere, per favore?","Můžete to zopakovat, prosím?"],["Ho bisogno di aiuto.","Potřebuji pomoc."],["A che ora parte il treno?","V kolik jede vlak?"],["Mi sono perso.","Ztratil jsem se."]],
   B1:[["Secondo me hai ragione.","Podle mě máš pravdu."],["Mi dispiace, sono in ritardo.","Omlouvám se, mám zpoždění."],["Non vedo l'ora di vederti.","Nemůžu se dočkat, až tě uvidím."],["Che ne pensi?","Co si o tom myslíš?"],["Dipende dalla situazione.","Záleží na situaci."],["Ci vediamo presto.","Brzy na viděnou."]],
   B2:[["A mio avviso, la situazione sta migliorando.","Podle mého názoru se situace zlepšuje."],["Non è detto che sia vero.","Není řečeno, že je to pravda."],["Se potessi, lo farei volentieri.","Kdybych mohl, rád bych to udělal."],["Mi è sfuggito il senso del discorso.","Unikl mi smysl rozhovoru."],["Avrei preferito saperlo prima.","Byl bych býval raději věděl dřív."],["In fin dei conti, ne è valsa la pena.","Nakonec to stálo za to."]]
 };
+
+/* kvízová otázka = [otázka, SPRÁVNÁ odpověď, špatná1, špatná2] – pořadí se míchá při zobrazení */
 const GRAMMAR = {
   A1:[
     {title:"Členy (articoli)",html:`<p>Italština má členy určité i neurčité. Řídí se rodem a začátkem slova.</p>
@@ -152,217 +221,350 @@ const GRAMMAR = {
       <tr><td>ž.</td><td><em>la</em> casa</td><td><em>una</em> casa</td></tr>
       <tr><td>před samohláskou</td><td><em>l'</em>amico / <em>l'</em>amica</td><td><em>un</em> amico / <em>un'</em>amica</td></tr></table>
       <p>Množné číslo: <em>i</em> gatti, <em>gli</em> studenti, <em>le</em> case.</p>`,
-      quiz:[{q:"___ cane (pes)",o:["il","la","lo"],a:0},{q:"___ casa (dům)",o:["il","la","l'"],a:1},{q:"___ studente (student)",o:["il","lo","la"],a:1}]},
+      quiz:[["___ cane (pes)","il","la","lo"],["___ casa (dům)","la","il","lo"],["___ studente (student)","lo","il","la"],["___ amica (přítelkyně)","l'","la","il"]]},
     {title:"Slovesa essere a avere",html:`<table><tr><th></th><th>essere (být)</th><th>avere (mít)</th></tr>
       <tr><td>io</td><td><em>sono</em></td><td><em>ho</em></td></tr><tr><td>tu</td><td><em>sei</em></td><td><em>hai</em></td></tr>
       <tr><td>lui/lei</td><td><em>è</em></td><td><em>ha</em></td></tr><tr><td>noi</td><td><em>siamo</em></td><td><em>abbiamo</em></td></tr>
       <tr><td>voi</td><td><em>siete</em></td><td><em>avete</em></td></tr><tr><td>loro</td><td><em>sono</em></td><td><em>hanno</em></td></tr></table>
-      <p>Osobní zájmena (io, tu…) se často vynechávají: <em>Sono stanco.</em></p>`,
-      quiz:[{q:"Io ___ stanco. (Jsem unavený.)",o:["sono","ho","sei"],a:0},{q:"Noi ___ fame. (Máme hlad.)",o:["siamo","abbiamo","hanno"],a:1},{q:"Loro ___ italiani. (Jsou Italové.)",o:["hanno","sono","è"],a:1}]}
+      <p>Osobní zájmena (io, tu…) se často vynechávají: <em>Sono stanco.</em> Věk se v italštině říká s <em>avere</em>: <em>Ho vent'anni.</em></p>`,
+      quiz:[["Io ___ stanco. (Jsem unavený.)","sono","ho","sei"],["Noi ___ fame. (Máme hlad.)","abbiamo","siamo","hanno"],["Loro ___ italiani. (Jsou Italové.)","sono","hanno","è"],["Tu ___ vent'anni. (Je ti dvacet.)","hai","sei","ha"]]},
+    {title:"Přítomný čas pravidelných sloves",html:`<p>Pravidelná slovesa se dělí podle koncovky infinitivu: <em>-are, -ere, -ire</em>.</p>
+      <table><tr><th></th><th>parlare (mluvit)</th><th>vendere (prodávat)</th><th>dormire (spát)</th><th>finire (končit)</th></tr>
+      <tr><td>io</td><td>parl<em>o</em></td><td>vend<em>o</em></td><td>dorm<em>o</em></td><td>fin<em>isco</em></td></tr>
+      <tr><td>tu</td><td>parl<em>i</em></td><td>vend<em>i</em></td><td>dorm<em>i</em></td><td>fin<em>isci</em></td></tr>
+      <tr><td>lui/lei</td><td>parl<em>a</em></td><td>vend<em>e</em></td><td>dorm<em>e</em></td><td>fin<em>isce</em></td></tr>
+      <tr><td>noi</td><td>parl<em>iamo</em></td><td>vend<em>iamo</em></td><td>dorm<em>iamo</em></td><td>fin<em>iamo</em></td></tr>
+      <tr><td>voi</td><td>parl<em>ate</em></td><td>vend<em>ete</em></td><td>dorm<em>ite</em></td><td>fin<em>ite</em></td></tr>
+      <tr><td>loro</td><td>parl<em>ano</em></td><td>vend<em>ono</em></td><td>dorm<em>ono</em></td><td>fin<em>iscono</em></td></tr></table>
+      <p>Slovesa jako <em>finire, capire, preferire</em> přidávají <em>-isc-</em> (kromě noi a voi).</p>`,
+      quiz:[["Io ___ italiano. (parlare)","parlo","parli","parla"],["Noi ___ il pane. (mangiare)","mangiamo","mangiate","mangiano"],["Lei ___ a Roma. (dormire)","dorme","dormi","dormo"],["Loro ___ il lavoro. (finire)","finiscono","finono","finiamo"]]},
+    {title:"Množné číslo podstatných jmen",html:`<table><tr><th>koncovka</th><th>jednotné → množné</th></tr>
+      <tr><td>-o → <em>-i</em></td><td>libro → libri</td></tr><tr><td>-a → <em>-e</em></td><td>casa → case</td></tr>
+      <tr><td>-e → <em>-i</em></td><td>cane → cani</td></tr><tr><td>-ca, -ga → <em>-che, -ghe</em></td><td>amica → amiche</td></tr>
+      <tr><td>přízvučná samohláska</td><td>città → <em>città</em>, caffè → <em>caffè</em> (neměnná)</td></tr>
+      <tr><td>nepravidelná</td><td>uomo → uomini</td></tr></table>`,
+      quiz:[["libro → ___ (množné číslo)","libri","libre","libro"],["casa → ___ (množné číslo)","case","casi","casas"],["cane → ___ (množné číslo)","cani","cane","cania"],["una città → due ___","città","citti","cittàs"]]}
   ],
   A2:[
     {title:"Passato prossimo",html:`<p>Minulý čas složený: pomocné sloveso <em>avere</em> nebo <em>essere</em> + příčestí.</p>
       <p><em>Ho mangiato</em> la pizza. · <em>Sono andato</em> a Roma.</p>
       <ul><li>Většina sloves používá <em>avere</em>.</li><li>Pohyb a změna stavu (andare, venire, partire, nascere) používají <em>essere</em> – příčestí se shoduje s podmětem: <em>Maria è andata</em>.</li></ul>
       <p>Příčestí: -are → <em>-ato</em>, -ere → <em>-uto</em>, -ire → <em>-ito</em>. Nepravidelná: fare → <em>fatto</em>, vedere → <em>visto</em>.</p>`,
-      quiz:[{q:"Ieri io ___ al cinema. (Včera jsem šel do kina.)",o:["ho andato","sono andato","andavo"],a:1},{q:"Lei ___ mangiato la torta.",o:["ha","è","hanno"],a:0},{q:"Příčestí od fare:",o:["fato","fatto","fanto"],a:1}]},
+      quiz:[["Ieri io ___ al cinema. (Včera jsem šel do kina.)","sono andato","ho andato","vado"],["Lei ___ mangiato la torta.","ha","è","hanno"],["Příčestí od fare:","fatto","fato","fanto"],["Noi ___ partiti ieri.","siamo","abbiamo","sono"]]},
     {title:"Předložky s členem",html:`<p>Předložky <em>di, a, da, in, su</em> se spojují s určitým členem:</p>
-      <table><tr><th></th><th>il</th><th>la</th><th>i</th></tr><tr><td>in</td><td>nel</td><td>nella</td><td>nei</td></tr>
-      <tr><td>su</td><td>sul</td><td>sulla</td><td>sui</td></tr><tr><td>di</td><td>del</td><td>della</td><td>dei</td></tr>
-      <tr><td>a</td><td>al</td><td>alla</td><td>ai</td></tr></table>
-      <p><em>Vado al mare. Il libro è sul tavolo.</em></p>`,
-      quiz:[{q:"Il libro è ___ tavolo. (na stole)",o:["sul","nel","al"],a:0},{q:"Vado ___ mare. (k moři)",o:["al","del","sul"],a:0},{q:"Abito ___ città. (ve městě)",o:["nella","sulla","della"],a:0}]}
+      <table><tr><th></th><th>il</th><th>lo</th><th>l'</th><th>la</th><th>i</th><th>gli</th><th>le</th></tr>
+      <tr><td>in</td><td>nel</td><td>nello</td><td>nell'</td><td>nella</td><td>nei</td><td>negli</td><td>nelle</td></tr>
+      <tr><td>su</td><td>sul</td><td>sullo</td><td>sull'</td><td>sulla</td><td>sui</td><td>sugli</td><td>sulle</td></tr>
+      <tr><td>di</td><td>del</td><td>dello</td><td>dell'</td><td>della</td><td>dei</td><td>degli</td><td>delle</td></tr>
+      <tr><td>a</td><td>al</td><td>allo</td><td>all'</td><td>alla</td><td>ai</td><td>agli</td><td>alle</td></tr>
+      <tr><td>da</td><td>dal</td><td>dallo</td><td>dall'</td><td>dalla</td><td>dai</td><td>dagli</td><td>dalle</td></tr></table>
+      <p><em>Vado al mare. Il libro è sul tavolo. Vengo dalla stazione.</em> (<em>per</em> a <em>con</em> se zpravidla neslučují.)</p>`,
+      quiz:[["Il libro è ___ tavolo. (na stole)","sul","nel","del"],["Vado ___ mare. (k moři)","al","del","nel"],["Abito ___ centro. (v centru)","nel","sul","del"],["Telefono ___ amici. (Volám přátelům.)","agli","ai","alle"]]},
+    {title:"Sloveso piacere (líbit se)",html:`<p>Sloveso <em>piacere</em> funguje „obráceně“: to, co se líbí, je podmět. <em>Mi piace la pizza</em> = Líbí se mi pizza = Mám rád pizzu.</p>
+      <table><tr><th></th><th>jednotné / infinitiv</th><th>množné</th></tr>
+      <tr><td>(a me)</td><td><em>mi piace</em></td><td><em>mi piacciono</em></td></tr><tr><td>(a te)</td><td><em>ti piace</em></td><td><em>ti piacciono</em></td></tr>
+      <tr><td>(a lui)</td><td><em>gli piace</em></td><td><em>gli piacciono</em></td></tr><tr><td>(a lei)</td><td><em>le piace</em></td><td><em>le piacciono</em></td></tr>
+      <tr><td>(a noi)</td><td><em>ci piace</em></td><td><em>ci piacciono</em></td></tr><tr><td>(a loro)</td><td><em>gli piace</em></td><td><em>gli piacciono</em></td></tr></table>
+      <p><em>Mi piace leggere. Mi piacciono gli spaghetti. Non mi piace il caffè.</em></p>`,
+      quiz:[["___ la pizza. (Mám rád pizzu.)","Mi piace","Mi piacciono","Mi piaci"],["___ gli spaghetti. (Mám rád špagety.)","Mi piacciono","Mi piace","Mi piacete"],["A lei ___ leggere. (Ráda čte.)","piace","piacciono","piacere"],["Ai ragazzi ___ i videogiochi.","piacciono","piace","piacete"]]},
+    {title:"Zvratná slovesa",html:`<p>Zvratná slovesa mají na konci infinitivu <em>-si</em> (alzarsi – vstávat) a před časovaným tvarem zvratné zájmeno.</p>
+      <table><tr><th></th><th>alzarsi</th></tr><tr><td>io</td><td><em>mi</em> alzo</td></tr><tr><td>tu</td><td><em>ti</em> alzi</td></tr>
+      <tr><td>lui/lei</td><td><em>si</em> alza</td></tr><tr><td>noi</td><td><em>ci</em> alziamo</td></tr><tr><td>voi</td><td><em>vi</em> alzate</td></tr><tr><td>loro</td><td><em>si</em> alzano</td></tr></table>
+      <p>V passato prossimo se vždy používá <em>essere</em>: <em>Mi sono alzato presto.</em> (žena: <em>alzata</em>)</p>
+      <p>Také: <em>chiamarsi</em> (jmenovat se) – <em>Mi chiamo Anna.</em>, <em>divertirsi</em> (bavit se), <em>lavarsi</em> (mýt se).</p>`,
+      quiz:[["Io ___ alzo alle sette.","mi","ti","si"],["Lui ___ chiama Marco.","si","mi","ci"],["Noi ___ divertiamo molto.","ci","si","mi"],["Ieri mi ___ alzato presto. (passato prossimo)","sono","ho","sei"]]}
   ],
   B1:[
     {title:"Imperfetto × passato prossimo",html:`<p><em>Imperfetto</em> = opakovaný nebo trvající děj, popis v minulosti (<em>Quando ero piccolo, giocavo ogni giorno</em>).</p>
       <p><em>Passato prossimo</em> = jednorázový, ukončený děj (<em>Ieri ho giocato a calcio</em>).</p>
       <p>Kombinace: <em>Mentre camminavo, ho incontrato Luca.</em></p>
-      <p>Koncovky imperfetta: -avo, -avi, -ava, -avamo, -avate, -avano.</p>`,
-      quiz:[{q:"Da bambino ___ sempre al mare.",o:["andavo","sono andato","andrò"],a:0},{q:"Ieri ___ un film.",o:["guardavo","ho guardato","guardo"],a:1},{q:"Mentre ___ , è squillato il telefono. (Zatímco jsem vařil…)",o:["cucinavo","ho cucinato","cucinerò"],a:0}]},
+      <table><tr><th></th><th>-are (parlare)</th><th>-ere (vedere)</th><th>-ire (dormire)</th></tr>
+      <tr><td>io</td><td>parl<em>avo</em></td><td>ved<em>evo</em></td><td>dorm<em>ivo</em></td></tr><tr><td>tu</td><td>parl<em>avi</em></td><td>ved<em>evi</em></td><td>dorm<em>ivi</em></td></tr>
+      <tr><td>lui/lei</td><td>parl<em>ava</em></td><td>ved<em>eva</em></td><td>dorm<em>iva</em></td></tr><tr><td>noi</td><td>parl<em>avamo</em></td><td>ved<em>evamo</em></td><td>dorm<em>ivamo</em></td></tr>
+      <tr><td>voi</td><td>parl<em>avate</em></td><td>ved<em>evate</em></td><td>dorm<em>ivate</em></td></tr><tr><td>loro</td><td>parl<em>avano</em></td><td>ved<em>evano</em></td><td>dorm<em>ivano</em></td></tr></table>
+      <p>Nepravidelné: <em>ero, eri, era…</em> (essere), <em>facevo</em> (fare).</p>`,
+      quiz:[["Da piccolo ___ spesso con mio nonno. (často, opakovaně)","giocavo","ho giocato","giocherò"],["Ieri ___ un film. (jednorázový děj)","ho guardato","guardavo","guardo"],["Mentre ___ la cena, è squillato il telefono.","preparavo","ho preparato","preparerò"],["Quando ___ giovane, vivevo a Praga.","ero","sono","sarò"]]},
     {title:"Condizionale",html:`<p>Podmiňovací způsob: zdvořilé žádosti, přání, rady.</p>
-      <p>Tvoření: infinitiv (bez -e) + <em>-ei, -esti, -ebbe, -emmo, -este, -ebbero</em>.</p>
+      <p>Tvoření: infinitiv (bez -e) + <em>-ei, -esti, -ebbe, -emmo, -este, -ebbero</em>. U sloves na <em>-are</em> se <em>a</em> mění na <em>e</em>: parlare → parl<em>erei</em>.</p>
       <p><em>Vorrei un caffè. Potresti aiutarmi? Dovresti riposare.</em></p>
       <p>Nepravidelné kmeny: avere → <em>avrei</em>, essere → <em>sarei</em>, andare → <em>andrei</em>.</p>`,
-      quiz:[{q:"___ un caffè, per favore. (Dal bych si kávu.)",o:["Voglio","Vorrei","Volevo"],a:1},{q:"Tu ___ riposare di più. (Měl bys…)",o:["devi","dovresti","dovevi"],a:1},{q:"Condizionale od essere (io):",o:["sarei","sarò","ero"],a:0}]}
+      quiz:[["___ un caffè, per favore. (zdvořilá žádost)","Vorrei","Voglio","Volevo"],["Un consiglio: tu ___ riposare di più. (měl bys)","dovresti","devi","dovevi"],["Condizionale od essere (io):","sarei","sarò","ero"],["Io ___ volentieri al mare. (rád bych šel)","andrei","vado","andavo"]]},
+    {title:"Futuro semplice",html:`<p>Budoucí čas: infinitiv (bez -e) + <em>-ò, -ai, -à, -emo, -ete, -anno</em>. U sloves na <em>-are</em> se <em>a</em> mění na <em>e</em>.</p>
+      <table><tr><th></th><th>parlare</th><th>vendere</th><th>partire</th></tr>
+      <tr><td>io</td><td>parl<em>erò</em></td><td>vend<em>erò</em></td><td>part<em>irò</em></td></tr><tr><td>tu</td><td>parl<em>erai</em></td><td>vend<em>erai</em></td><td>part<em>irai</em></td></tr>
+      <tr><td>lui/lei</td><td>parl<em>erà</em></td><td>vend<em>erà</em></td><td>part<em>irà</em></td></tr><tr><td>noi</td><td>parl<em>eremo</em></td><td>vend<em>eremo</em></td><td>part<em>iremo</em></td></tr>
+      <tr><td>voi</td><td>parl<em>erete</em></td><td>vend<em>erete</em></td><td>part<em>irete</em></td></tr><tr><td>loro</td><td>parl<em>eranno</em></td><td>vend<em>eranno</em></td><td>part<em>iranno</em></td></tr></table>
+      <p>Nepravidelné: essere → <em>sarò</em>, avere → <em>avrò</em>, andare → <em>andrò</em>, fare → <em>farò</em>, venire → <em>verrò</em>. Slovesa na <em>-ciare, -giare</em> ztrácejí <em>i</em>: mangiare → <em>mangerò</em>.</p>`,
+      quiz:[["Domani io ___ a Roma. (andare – budoucí čas)","andrò","andai","andavo"],["Tu ___ contento. (essere – budoucí čas)","sarai","sei","eri"],["Noi ___ la pizza. (mangiare – budoucí čas)","mangeremo","mangiamo","mangiavamo"],["Lei ___ domani. (partire – budoucí čas)","partirà","parte","partiva"]]},
+    {title:"Zájmena lo, la, li, le",html:`<p>Zájmena přímého předmětu stojí <em>před</em> slovesem: <em>Vedo Marco → <b>Lo</b> vedo.</em></p>
+      <table><tr><th>zájmeno</th><th>nahrazuje</th></tr><tr><td><em>lo</em></td><td>m. j. č. (il libro)</td></tr><tr><td><em>la</em></td><td>ž. j. č. (la mela)</td></tr>
+      <tr><td><em>li</em></td><td>m. mn. č. (i libri)</td></tr><tr><td><em>le</em></td><td>ž. mn. č. (le mele)</td></tr></table>
+      <p>Před samohláskou se <em>lo/la</em> krátí: <em>L'ho visto.</em></p>
+      <p>V passato prossimo se příčestí shoduje se zájmenem: <em>Ho visto Maria → L'ho <b>vista</b>. Ho comprato i libri → Li ho compra<b>ti</b>.</em></p>`,
+      quiz:[["Vedo Maria. → ___ vedo.","La","Lo","Li"],["Compro i libri. → ___ compro.","Li","Lo","Le"],["Mangio le mele. → ___ mangio.","Le","Li","La"],["Ho visto Maria. → L'ho ___","vista","visto","visti"]]}
   ],
   B2:[
-    {title:"Congiuntivo presente",html:`<p>Používá se po výrazech názoru, pochybnosti, přání: <em>penso che, credo che, è possibile che, voglio che</em>.</p>
+    {title:"Congiuntivo presente",html:`<p>Používá se po výrazech názoru, pochybnosti, přání: <em>penso che, credo che, è possibile che, voglio che, spero che</em>.</p>
       <p><em>Penso che lui <b>abbia</b> ragione. Credo che sia tardi. Voglio che tu venga.</em></p>
-      <table><tr><th></th><th>essere</th><th>avere</th></tr><tr><td>io/tu/lui</td><td>sia</td><td>abbia</td></tr><tr><td>noi</td><td>siamo</td><td>abbiamo</td></tr><tr><td>loro</td><td>siano</td><td>abbiano</td></tr></table>`,
-      quiz:[{q:"Penso che lui ___ ragione.",o:["ha","abbia","avrà"],a:1},{q:"Credo che ___ già tardi.",o:["è","sia","sarà"],a:1},{q:"Voglio che tu ___ con me.",o:["vieni","venga","verrai"],a:1}]},
+      <table><tr><th></th><th>essere</th><th>avere</th></tr><tr><td>io/tu/lui</td><td>sia</td><td>abbia</td></tr><tr><td>noi</td><td>siamo</td><td>abbiamo</td></tr><tr><td>loro</td><td>siano</td><td>abbiano</td></tr></table>
+      <p>Pravidelně: -are → <em>-i, -i, -i, -iamo, -iate, -ino</em> (parlare → che io parli); -ere/-ire → <em>-a, -a, -a, -iamo, -iate, -ano</em> (vendere → venda, dormire → dorma, finire → finisca).</p>`,
+      quiz:[["Penso che lui ___ ragione.","abbia","ha","avrà"],["Credo che ___ già tardi.","sia","è","sarà"],["Voglio che tu ___ con me.","venga","vieni","verrai"],["Spero che tu ___ bene. (stare)","stia","stai","starai"]]},
     {title:"Periodo ipotetico",html:`<p>Podmínkové věty tří typů:</p>
       <ul><li>Reálná: <em>Se piove, resto a casa.</em></li>
       <li>Nereálná přítomná: <em>Se avessi tempo, leggerei di più.</em> (congiuntivo imperfetto + condizionale)</li>
-      <li>Nereálná minulá: <em>Se avessi saputo, sarei venuto.</em> (congiuntivo trapassato + condizionale passato)</li></ul>`,
-      quiz:[{q:"Se ___ tempo, viaggerei di più.",o:["ho","avessi","avrò"],a:1},{q:"Se avessi saputo, ___ venuto.",o:["sarei","sono","ero"],a:0},{q:"Se piove, ___ a casa.",o:["resterei","resto","resterò"],a:1}]}
+      <li>Nereálná minulá: <em>Se avessi saputo, sarei venuto.</em> (congiuntivo trapassato + condizionale passato)</li></ul>
+      <p>Congiuntivo imperfetto: essere → <em>fossi, fossi, fosse, fossimo, foste, fossero</em>; avere → <em>avessi, avessi, avesse…</em></p>`,
+      quiz:[["Se ___ tempo, viaggerei di più.","avessi","ho","avrò"],["Se avessi saputo, ___ venuto.","sarei","sono","ero"],["Se avessi i soldi, ___ una casa. (koupil bych)","comprerei","compro","comprai"],["Se fossi in te, ___ questo lavoro. (přijal bych)","accetterei","accettai","accetterò"]]},
+    {title:"Passivo",html:`<p>Pasivum se tvoří <em>essere</em> + příčestí, které se shoduje s podmětem. Původce děje uvádí <em>da</em>.</p>
+      <p><em>La casa è stata costruita da mio nonno. Il progetto è stato approvato. Le lettere sono state spedite.</em></p>
+      <p>V jednoduchých časech lze použít i <em>venire</em> + příčestí: <em>Il libro viene letto da molti.</em></p>`,
+      quiz:[["La casa è stata ___ nel 1900. (costruire)","costruita","costruito","costruiti"],["Le lettere sono state ___ ieri. (spedire)","spedite","spedito","spedita"],["Il progetto ___ approvato ieri.","è stato","ha stato","è stata"],["La finestra è stata ___ da Luca.","chiusa","chiuso","chiusi"]]},
+    {title:"Vztažná zájmena",html:`<table><tr><th>zájmeno</th><th>použití</th></tr>
+      <tr><td><em>che</em></td><td>podmět nebo předmět bez předložky: <em>Il libro che leggo è bello.</em></td></tr>
+      <tr><td><em>cui</em></td><td>po předložce: <em>La persona di cui parlo. L'amico con cui viaggio. La città in cui vivo.</em></td></tr>
+      <tr><td><em>il quale</em></td><td>formálnější náhrada, shoduje se v rodě a čísle: <em>la persona con la quale parlo</em></td></tr></table>
+      <p>Pozor: po <em>che</em> se předložka nikdy nedává (<em>che</em> × <em>di che</em> neexistuje).</p>`,
+      quiz:[["Il libro ___ ho letto è bello.","che","cui","chi"],["La ragazza di ___ ti ho parlato è mia sorella.","cui","che","quale"],["La città in ___ vivo è piccola.","cui","che","chi"],["L'amico con ___ viaggio è italiano.","cui","che","chi"]]}
   ]
 };
+
+/* vstupní test: [pásmo, otázka, správná, špatná1, špatná2] – po 3 otázkách na úroveň */
 const PLACEMENT = [
-  {q:"Ciao, come ___?",o:["stai","sei","hai"],a:0},
-  {q:"Io ___ uno studente.",o:["sono","ho","sto"],a:0},
-  {q:"Ieri io ___ al cinema.",o:["sono andato","ho andato","andavo"],a:0},
-  {q:"Il libro è ___ tavolo.",o:["sul","nel","del"],a:0},
-  {q:"Quando ero piccolo, ___ sempre al mare.",o:["andavo","sono andato","andrò"],a:0},
-  {q:"Se avessi tempo, ___ di più.",o:["leggerei","leggo","leggerò"],a:0},
-  {q:"Penso che lui ___ ragione.",o:["ha","abbia","avrà"],a:1},
-  {q:"Se avessi saputo, ___ venuto.",o:["sarei","sono","ero"],a:0}
+  ["A1","Ciao, come ___?","stai","sei","hai"],
+  ["A1","Io ___ uno studente.","sono","ho","sto"],
+  ["A1","___ gatto dorme sul divano.","Il","Lo","La"],
+  ["A2","Ieri io ___ al cinema.","sono andato","ho andato","andare"],
+  ["A2","Il libro è ___ tavolo.","sul","nel","del"],
+  ["A2","Maria ___ partita ieri.","è","ha","sono"],
+  ["B1","Quando ero piccolo, ___ sempre al mare.","andavo","sono andato","andrò"],
+  ["B1","___ un caffè, per favore. (zdvořilá žádost)","Vorrei","Voglio","Volevo"],
+  ["B1","Mentre ___ la cena, è squillato il telefono.","preparavo","ho preparato","preparerò"],
+  ["B2","Penso che lui ___ ragione.","abbia","ha","avrà"],
+  ["B2","Se avessi saputo, ___ venuto.","sarei","sono","ero"],
+  ["B2","Se avessi tempo, ___ di più.","leggerei","leggo","leggessi"]
 ];
 
 /* ============ STATE ============ */
 const LS_KEY = "italiano-v1";
-let S = {level:null, xp:0, streak:0, lastDay:null, known:{}, grammarDone:{}};
-try { Object.assign(S, JSON.parse(localStorage.getItem(LS_KEY)) || {}); } catch(e) {}
+const has = (o,k) => Object.prototype.hasOwnProperty.call(o,k);
+const defaults = () => ({level:null, xp:0, streak:0, lastDay:null, mastery:{}, learned:{}, grammarDone:{}});
+function sanitize(raw){
+  const s = defaults();
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return s;
+  if (typeof raw.level === "string" && has(LEVELS, raw.level)) s.level = raw.level;
+  if (Number.isFinite(raw.xp) && raw.xp > 0) s.xp = Math.floor(raw.xp);
+  if (Number.isFinite(raw.streak) && raw.streak > 0) s.streak = Math.floor(raw.streak);
+  if (typeof raw.lastDay === "string" && /^\d{4}-\d{2}-\d{2}$/.test(raw.lastDay)) s.lastDay = raw.lastDay;
+  const each = (o, f) => { if (o && typeof o === "object" && !Array.isArray(o)) for (const k of Object.keys(o)) f(k, o[k]); };
+  each(raw.mastery, (k,v) => { if (Number.isFinite(v) && v > 0) s.mastery[k] = Math.min(4, Math.floor(v)); });
+  each(raw.learned, (k,v) => { if (v === true) s.learned[k] = true; });
+  each(raw.grammarDone, (k,v) => { if (v === true) s.grammarDone[k] = true; });
+  each(raw.known, (k,v) => { if (v === true) { s.mastery[k] = Math.max(s.mastery[k]||0, 3); s.learned[k] = true; } }); // starší verze
+  return s;
+}
+let S = defaults();
+try { S = sanitize(JSON.parse(localStorage.getItem(LS_KEY))); } catch(e) {}
 const save = () => { try { localStorage.setItem(LS_KEY, JSON.stringify(S)); } catch(e) {} };
-const today = () => new Date().toISOString().slice(0,10);
-function addXP(n){
-  S.xp += n;
-  const t = today();
-  if (S.lastDay !== t){
-    const y = new Date(Date.now()-864e5).toISOString().slice(0,10);
-    S.streak = S.lastDay === y ? S.streak+1 : 1;
-    S.lastDay = t;
-  }
+const dayKey = d => d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+function touch(){
+  const t = dayKey(new Date());
+  if (S.lastDay === t) return;
+  const y = new Date(); y.setDate(y.getDate()-1);
+  S.streak = S.lastDay === dayKey(y) ? S.streak+1 : 1;
+  S.lastDay = t;
+}
+function curStreak(){
+  const now = new Date(), y = new Date(); y.setDate(y.getDate()-1);
+  return (S.lastDay === dayKey(now) || S.lastDay === dayKey(y)) ? S.streak : 0;
+}
+const isKnown = id => (S.mastery[id]||0) >= 2;
+function setMastery(id, val){
+  const was = isKnown(id);
+  S.mastery[id] = Math.max(0, Math.min(4, val));
+  touch();
+  if (!was && isKnown(id) && !S.learned[id]){ S.learned[id] = true; S.xp += 5; }   // XP jen za nově naučené slovo
+  save(); renderStats();
+}
+const bump = (id, ok) => setMastery(id, (S.mastery[id]||0) + (ok ? 1 : -1));
+function lessonDone(key, correct){            // XP jen při prvním splnění lekce
+  touch();
+  if (!S.grammarDone[key]){ S.grammarDone[key] = true; S.xp += correct*5; }
   save(); renderStats();
 }
 
 /* ============ HELPERS ============ */
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const IT = s => `<span lang="it">${esc(s)}</span>`;
 const shuffle = a => { a = a.slice(); for (let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
-const norm = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z' ]/g,"").replace(/\s+/g," ").trim();
-const wordsOf = lvl => WORDS[lvl].map((w,i)=>({id:lvl+"-"+i,it:w[0],cs:w[1],ex:w[2]}));
+const norm = s => s.toLowerCase().replace(/[’‘`´]/g,"'").normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z' ]/g,"").replace(/\s+/g," ").trim();
+const WC = {};
+function wordsOf(lvl){
+  return WC[lvl] || (WC[lvl] = WORDS[lvl].map((w,i) => ({
+    id:lvl+"-"+i, it:w[0], cs:w[1], ex:w[2], art:w[3]||"",
+    full: w[3] ? (w[3].endsWith("'") ? w[3]+w[0] : w[3]+" "+w[0]) : w[0],
+    mean: w[1].toLowerCase().split(/\s*,\s*/)
+  })));
+}
+const sameMeaning = (a,b) => a.mean.some(m => b.mean.includes(m));
+const pick = (ws,n) => { const u = shuffle(ws.filter(w => !isKnown(w.id))), k = shuffle(ws.filter(w => isKnown(w.id))); return u.concat(k).slice(0,n); };
+const mcq = ([q,c,...w]) => ({q, opts:shuffle([c,...w]).map(t => ({t, ok:t===c}))});
+/* výslovnost */
+let itVoice = null, voicesFinal = false;
+const speechOK = "speechSynthesis" in window;
+function loadVoices(){
+  let ok = speechOK;
+  if (speechOK){
+    const vs = speechSynthesis.getVoices();
+    itVoice = vs.find(v => /^it([-_]|$)/i.test(v.lang)) || null;
+    if (vs.length) voicesFinal = true;
+    if (voicesFinal && !itVoice) ok = false;
+    if (!vs.length && voicesFinal) ok = false;
+  }
+  document.body.classList.toggle("nosound", !ok);
+}
 function speak(text){
-  if (!("speechSynthesis" in window)) return;
+  if (!speechOK || document.body.classList.contains("nosound")) return;
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text); u.lang = "it-IT"; u.rate = .9;
+  if (itVoice) u.voice = itVoice;
   speechSynthesis.speak(u);
 }
+const spBtn = (t, label="") => `<button class="btn ghost speak sp" data-act="say" data-t="${esc(t)}" aria-label="Přehrát výslovnost: ${esc(t)}">🔊${label}</button>`;
 
 /* ============ SHELL ============ */
 const TABS = [["home","🏠 Domů"],["cards","🃏 Slovíčka"],["quiz","❓ Kvíz"],["write","✍️ Psaní"],["grammar","📖 Gramatika"],["phrases","💬 Fráze"]];
 let view = "home";
 function renderStats(){
+  const st = curStreak();
   $("#stats").innerHTML = S.level
-    ? `<span class="chip lvl" data-act="changeLevel" title="Změnit úroveň">Úroveň ${S.level} ✎</span><span class="chip">⭐ ${S.xp} XP</span><span class="chip">🔥 ${S.streak} ${S.streak===1?"den":"dní"}</span>`
+    ? `<button class="chip lvl" data-act="changeLevel" title="Změnit úroveň">Úroveň ${S.level} ✎</button><span class="chip">⭐ ${S.xp} XP</span><span class="chip">🔥 ${st} ${st===1?"den":st>=2&&st<=4?"dny":"dní"}</span>`
     : "";
 }
 function renderNav(){
   $("#nav").innerHTML = S.level ? TABS.map(([k,l]) => `<button data-act="go" data-v="${k}" ${k===view?'aria-current="page"':""}>${l}</button>`).join("") : "";
 }
-function go(v){ view = v; renderNav(); renderStats(); const m = $("#main"); m.innerHTML = ""; (VIEWS[v] || VIEWS.home)(m); window.scrollTo(0,0); }
+function go(v){
+  if (!S.level) v = "home";
+  view = v; renderNav(); renderStats();
+  const m = $("#main"); m.innerHTML = "";
+  VIEWS[v](m);
+  m.focus({preventScroll:true}); window.scrollTo(0,0);
+}
 
 /* ============ VIEWS ============ */
 const VIEWS = {};
 
-function levelPicker(m){
-  m.innerHTML = `<h2>Benvenuto! Vítejte 👋</h2>
+function levelPicker(m, cur){
+  m.innerHTML = `<h2>${cur ? "Změna úrovně" : "Benvenuto! Vítejte 👋"}</h2>
     <p class="sub">Vyberte svou úroveň italštiny. Kdykoli ji můžete změnit. Nevíte? Zkuste krátký test.</p>
-    <div class="grid">${Object.entries(LEVELS).map(([k,v]) => `
-      <button class="card level ${S.level===k?"on":""}" data-act="pick" data-l="${k}"><b>${k}</b><strong>${v.name}</strong><br><span class="sub">${v.desc}</span></button>`).join("")}</div>
-    <div class="row" style="margin-top:20px"><button class="btn red" data-act="placement">🎯 Určit mou úroveň testem (8 otázek)</button></div>`;
+    <div class="grid">${LEVEL_KEYS.map(k => `
+      <button class="card level ${cur===k?"on":""}" data-act="pick" data-l="${k}" aria-pressed="${cur===k}"><b>${k}</b><strong>${LEVELS[k].name}</strong><br><span class="sub">${LEVELS[k].desc}</span></button>`).join("")}</div>
+    <div class="row" style="margin-top:20px"><button class="btn red" data-act="placement">🎯 Určit mou úroveň testem (${PLACEMENT.length} otázek)</button>
+    ${cur ? `<button class="btn ghost" data-act="go" data-v="home">Zrušit</button>` : ""}</div>`;
 }
 
 let PT = null;
+function placeLevel(b){ for (const L of LEVEL_KEYS) if (b[L] < 2) return L; return "B2"; }
 function placementStep(m){
-  if (PT.i >= PLACEMENT.length){
-    const lvl = PT.score<=2?"A1":PT.score<=4?"A2":PT.score<=6?"B1":"B2";
-    m.innerHTML = `<div class="card center"><h2>Výsledek: ${PT.score} / ${PLACEMENT.length}</h2>
-      <p>Doporučená úroveň: <b style="font-size:1.6rem;color:var(--red)">${lvl}</b> – ${LEVELS[lvl].name}</p>
+  if (PT.i >= PT.items.length){
+    const lvl = placeLevel(PT.bands), total = Object.values(PT.bands).reduce((a,b)=>a+b,0);
+    m.innerHTML = `<div class="card center"><h2>Výsledek: ${total} / ${PT.items.length}</h2>
+      <p>${LEVEL_KEYS.map(L => `${L}: ${PT.bands[L]}/3`).join(" · ")}</p>
+      <p>Doporučená úroveň: <b class="big" style="color:var(--red)">${lvl}</b> – ${LEVELS[lvl].name}</p>
       <div class="row center"><button class="btn" data-act="pick" data-l="${lvl}">Začít na úrovni ${lvl}</button><button class="btn ghost" data-act="changeLevel">Vybrat ručně</button></div></div>`;
     return;
   }
-  const q = PLACEMENT[PT.i];
-  m.innerHTML = `<div class="card"><div class="progress"><i style="width:${PT.i/PLACEMENT.length*100}%"></i></div>
-    <p class="sub" style="margin-top:10px">Otázka ${PT.i+1} / ${PLACEMENT.length}</p>
-    <div class="qword">${esc(q.q)}</div>
-    <div class="opts">${q.o.map((o,i)=>`<button class="opt" data-act="ptAns" data-i="${i}">${esc(o)}</button>`).join("")}</div>
+  const q = PT.items[PT.i];
+  m.innerHTML = `<div class="card"><div class="progress"><i style="width:${PT.i/PT.items.length*100}%"></i></div>
+    <p class="sub" style="margin-top:10px">Otázka ${PT.i+1} / ${PT.items.length}</p>
+    <div class="qword">${IT(q.q)}</div>
+    <div class="opts">${q.opts.map((o,i)=>`<button class="opt" data-act="ptAns" data-i="${i}">${IT(o.t)}</button>`).join("")}</div>
     <button class="btn ghost" data-act="ptSkip">Nevím</button></div>`;
 }
 
 VIEWS.home = m => {
-  if (!S.level) return levelPicker(m);
-  const ws = wordsOf(S.level), known = ws.filter(w => S.known[w.id]).length;
-  const wod = ws[Math.floor(Date.now()/864e5) % ws.length];
+  if (!S.level) return levelPicker(m, null);
+  const ws = wordsOf(S.level), known = ws.filter(w => isKnown(w.id)).length;
+  const gl = GRAMMAR[S.level], gdone = gl.filter((_,i) => S.grammarDone[S.level+":"+i]).length;
+  const n = new Date(), wod = ws[Math.floor(Date.UTC(n.getFullYear(),n.getMonth(),n.getDate())/864e5) % ws.length];
   m.innerHTML = `<h2>Ciao! Pokračujeme na úrovni ${S.level}</h2><p class="sub">${LEVELS[S.level].name} – ${LEVELS[S.level].desc}</p>
     <div class="grid">
-      <div class="card"><h3>Slovo dne</h3><div class="qword" style="text-align:left;margin:0">${esc(wod.it)} <button class="btn ghost speak" data-act="say" data-t="${esc(wod.it)}" aria-label="Přehrát">🔊</button></div>
-        <div style="color:var(--green-d);font-weight:700">${esc(wod.cs)}</div><div class="sub" style="font-style:italic;margin:6px 0 0">${esc(wod.ex)}</div></div>
-      <div class="card"><h3>Naučená slovíčka</h3><div class="qword" style="text-align:left;margin:0">${known} / ${ws.length}</div>
-        <div class="progress"><i style="width:${known/ws.length*100}%"></i></div></div>
-      <div class="card"><h3>Lekce gramatiky</h3><div class="qword" style="text-align:left;margin:0">${GRAMMAR[S.level].filter((_,i)=>S.grammarDone[S.level+i]).length} / ${GRAMMAR[S.level].length}</div>
-        <div class="progress"><i style="width:${GRAMMAR[S.level].filter((_,i)=>S.grammarDone[S.level+i]).length/GRAMMAR[S.level].length*100}%"></i></div></div>
+      <div class="card"><h3>Slovo dne</h3><div class="big">${IT(wod.full)} ${spBtn(wod.full)}</div>
+        <div style="color:var(--green-d);font-weight:700">${esc(wod.cs)}</div><div class="sub" style="font-style:italic;margin:6px 0 0">${IT(wod.ex)}</div></div>
+      <div class="card"><h3>Naučená slovíčka</h3><div class="big">${known} / ${ws.length}</div>
+        <div class="progress" role="progressbar" aria-valuenow="${known}" aria-valuemin="0" aria-valuemax="${ws.length}"><i style="width:${known/ws.length*100}%"></i></div></div>
+      <div class="card"><h3>Lekce gramatiky</h3><div class="big">${gdone} / ${gl.length}</div>
+        <div class="progress" role="progressbar" aria-valuenow="${gdone}" aria-valuemin="0" aria-valuemax="${gl.length}"><i style="width:${gdone/gl.length*100}%"></i></div></div>
     </div>
     <h3 style="margin-top:26px">Co dnes procvičíme?</h3>
     <div class="row"><button class="btn" data-act="go" data-v="cards">🃏 Slovíčka</button><button class="btn" data-act="go" data-v="quiz">❓ Kvíz</button>
-      <button class="btn" data-act="go" data-v="write">✍️ Psaní</button><button class="btn red" data-act="go" data-v="grammar">📖 Gramatika</button><button class="btn red" data-act="go" data-v="phrases">💬 Fráze</button></div>`;
+      <button class="btn" data-act="go" data-v="write">✍️ Psaní</button><button class="btn red" data-act="go" data-v="grammar">📖 Gramatika</button><button class="btn red" data-act="go" data-v="phrases">💬 Fráze</button></div>
+    <p class="sub" style="margin-top:28px">Slovíčko se počítá jako naučené, když ho označíte „Znám“ nebo ho dvakrát správně zodpovíte. XP dostanete za každé nově naučené slovo (5) a za první splnění lekce.</p>
+    <button class="btn ghost small" data-act="resetAll">Smazat veškerý pokrok</button>`;
 };
 
 /* --- Flashcards --- */
 let CQ = [], CShow = false;
-VIEWS.cards = m => {
-  const ws = wordsOf(S.level);
-  CQ = shuffle(ws.filter(w => !S.known[w.id])); CShow = false;
-  drawCard(m);
-};
+VIEWS.cards = m => { CQ = shuffle(wordsOf(S.level).filter(w => !isKnown(w.id))); CShow = false; drawCard(m); };
 function drawCard(m = $("#main")){
   const ws = wordsOf(S.level);
   if (!CQ.length){
     m.innerHTML = `<div class="card center"><h2>Bravo! 🎉</h2><p>Všechna slovíčka úrovně ${S.level} máte označená jako známá.</p>
-      <button class="btn" data-act="resetKnown">Začít znovu</button></div>`;
+      <div class="row center"><button class="btn" data-act="resetKnown">Procvičit znovu</button><button class="btn ghost" data-act="go" data-v="quiz">Jít na kvíz</button></div></div>`;
     return;
   }
-  const w = CQ[0], known = ws.filter(x => S.known[x.id]).length;
-  m.innerHTML = `<h2>Slovíčka</h2><p class="sub">Klikněte na kartu pro překlad. Zbývá ${CQ.length}, známe ${known}/${ws.length}.</p>
-    <div class="arch" data-act="flip" role="button" tabindex="0" aria-label="Otočit kartu">
-      <span class="tag">${S.level}</span><div class="it">${esc(w.it)}</div>
-      ${CShow ? `<div class="cs">${esc(w.cs)}</div><div class="ex">${esc(w.ex)}</div>` : `<div class="hint">Klikněte pro překlad</div>`}
+  const w = CQ[0], known = ws.filter(x => isKnown(x.id)).length;
+  m.innerHTML = `<h2>Slovíčka</h2><p class="sub">Klikněte na kartu (nebo stiskněte Enter) pro překlad. Zbývá ${CQ.length}, známe ${known}/${ws.length}.</p>
+    <div class="arch" data-act="flip" role="button" tabindex="0" aria-label="Otočit kartu: ${esc(w.full)}">
+      <span class="tag">${S.level}</span><div class="it">${IT(w.full)}</div>
+      ${CShow ? `<div class="cs">${esc(w.cs)}</div><div class="ex">${IT(w.ex)}</div>` : `<div class="hint">Klikněte pro překlad</div>`}
     </div>
-    <div class="row center"><button class="btn ghost" data-act="say" data-t="${esc(w.it)}">🔊 Poslechnout</button>
+    <div class="row center">${spBtn(w.full," Poslechnout")}
       <button class="btn red" data-act="cardNo">Ještě ne</button><button class="btn" data-act="cardYes">Znám ✓</button></div>`;
 }
+function flipCard(){ CShow = !CShow; drawCard(); const a = $(".arch"); if (a) a.focus(); }
 
 /* --- Quiz --- */
 let Q = null;
 VIEWS.quiz = m => {
-  const ws = wordsOf(S.level);
-  Q = {i:0, score:0, items: shuffle(ws).slice(0,8).map(w => ({w, dir: Math.random()<.5?"it":"cs"}))};
+  Q = {i:0, score:0, xp0:S.xp, items: pick(wordsOf(S.level),8).map(w => ({w, dir: Math.random()<.5?"it":"cs"})), cur:null};
   quizStep(m);
 };
 function quizStep(m = $("#main")){
   const ws = wordsOf(S.level);
   if (Q.i >= Q.items.length){
-    addXP(Q.score*2);
-    m.innerHTML = `<div class="card center"><h2>Výsledek: ${Q.score} / ${Q.items.length}</h2><p>+${Q.score*2} XP ${Q.score===Q.items.length?"🏆 Perfetto!":Q.score>=5?"👍 Molto bene!":"💪 Ancora un po'!"}</p>
+    const gain = S.xp - Q.xp0;
+    m.innerHTML = `<div class="card center"><h2>Výsledek: ${Q.score} / ${Q.items.length}</h2>
+      <p>${Q.score===Q.items.length?"🏆 Perfetto!":Q.score>=5?"👍 Molto bene!":"💪 Ancora un po'!"} ${gain ? `+${gain} XP za nově naučená slova.` : "Slovo se stane naučeným po druhé správné odpovědi."}</p>
       <button class="btn" data-act="go" data-v="quiz">Znovu</button></div>`;
     return;
   }
   const {w, dir} = Q.items[Q.i];
-  const others = shuffle(ws.filter(x => x.id !== w.id)).slice(0,3);
+  const others = shuffle(ws.filter(x => x.id !== w.id && !sameMeaning(x,w))).slice(0,3);
   const opts = shuffle([w, ...others]);
   Q.cur = {w, dir, correct: opts.indexOf(w)};
   m.innerHTML = `<h2>Kvíz</h2><div class="card"><div class="progress"><i style="width:${Q.i/Q.items.length*100}%"></i></div>
     <p class="sub" style="margin-top:10px">${dir==="it"?"Co znamená slovo?":"Jak se řekne italsky?"} (${Q.i+1}/${Q.items.length})</p>
-    <div class="qword">${esc(dir==="it"?w.it:w.cs)}</div>
-    <div class="opts">${opts.map((o,i)=>`<button class="opt" data-act="qAns" data-i="${i}">${esc(dir==="it"?o.cs:o.it)}</button>`).join("")}</div>
+    <div class="qword">${dir==="it"?IT(w.full):esc(w.cs)}</div>
+    <div class="opts">${opts.map((o,i)=>`<button class="opt" data-act="qAns" data-i="${i}">${dir==="it"?esc(o.cs):IT(o.full)}</button>`).join("")}</div>
     <div class="fb" aria-live="polite"></div></div>`;
 }
 
 /* --- Writing --- */
 let W = null;
-VIEWS.write = m => {
-  W = {i:0, score:0, items: shuffle(wordsOf(S.level)).slice(0,8), checked:false};
-  writeStep(m);
-};
+VIEWS.write = m => { W = {i:0, score:0, xp0:S.xp, items:pick(wordsOf(S.level),8), checked:false}; writeStep(m); };
 function writeStep(m = $("#main")){
   if (W.i >= W.items.length){
-    addXP(W.score*3);
-    m.innerHTML = `<div class="card center"><h2>Výsledek: ${W.score} / ${W.items.length}</h2><p>+${W.score*3} XP</p><button class="btn" data-act="go" data-v="write">Znovu</button></div>`;
+    const gain = S.xp - W.xp0;
+    m.innerHTML = `<div class="card center"><h2>Výsledek: ${W.score} / ${W.items.length}</h2><p>${gain ? `+${gain} XP za nově naučená slova.` : "Slovo se stane naučeným po druhé správné odpovědi."}</p><button class="btn" data-act="go" data-v="write">Znovu</button></div>`;
     return;
   }
   const w = W.items[W.i]; W.checked = false;
-  m.innerHTML = `<h2>Psaní</h2><p class="sub">Napište italsky. Diakritika (à, è…) se při hodnocení neřeší. (${W.i+1}/${W.items.length})</p>
+  m.innerHTML = `<h2>Psaní</h2><p class="sub">Napište italsky (člen psát nemusíte). Chybějící přízvuk vám nebude počítán jako chyba. (${W.i+1}/${W.items.length})</p>
     <form class="card" id="wform" autocomplete="off"><div class="qword">${esc(w.cs)}</div>
-      <div class="row center"><input type="text" id="winp" aria-label="Italský překlad" autofocus><button class="btn" type="submit">Zkontrolovat</button></div>
+      <p class="sub center" style="text-align:center;margin-bottom:12px">Nápověda: začíná na „${esc(w.it[0])}“, ${w.it.length} znaků${w.art ? ", podstatné jméno" : ""}</p>
+      <div class="row center"><input type="text" id="winp" aria-label="Italský překlad" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" lang="it"><button class="btn" type="submit">Zkontrolovat</button></div>
       <div class="fb" id="wfb" aria-live="polite"></div></form>`;
   $("#winp").focus();
 }
@@ -371,87 +573,108 @@ function writeStep(m = $("#main")){
 let GL = null;
 VIEWS.grammar = m => {
   GL = null;
-  const ls = GRAMMAR[S.level];
-  m.innerHTML = `<h2>Gramatika · ${S.level}</h2><p class="sub">Krátké lekce s procvičením.</p>
-    <div class="grid">${ls.map((l,i)=>`<button class="card level" data-act="lesson" data-i="${i}"><strong>${esc(l.title)}</strong><br><span class="sub">${S.grammarDone[S.level+i]?"✅ Dokončeno":"Nezačato"}</span></button>`).join("")}</div>`;
+  m.innerHTML = `<h2>Gramatika · ${S.level}</h2><p class="sub">Krátké lekce s procvičením. Lekce se počítá jako splněná, když zvládnete všechny otázky kromě jedné.</p>
+    <div class="grid">${GRAMMAR[S.level].map((l,i)=>`<button class="card level" data-act="lesson" data-i="${i}"><strong>${esc(l.title)}</strong><br><span class="sub">${S.grammarDone[S.level+":"+i]?"✅ Splněno":"Nesplněno"}</span></button>`).join("")}</div>`;
 };
 function lessonView(i){
   const l = GRAMMAR[S.level][i];
-  GL = {i, answered:0, correct:0, total:l.quiz.length};
+  GL = {i, key:S.level+":"+i, answered:0, correct:0, qs:l.quiz.map(mcq)};
   $("#main").innerHTML = `<button class="btn ghost" data-act="go" data-v="grammar">← Zpět</button>
     <div class="card lesson" style="margin-top:12px"><h2>${esc(l.title)}</h2>${l.html}
     <h3 style="margin-top:20px">Procvičení</h3>
-    ${l.quiz.map((q,qi)=>`<div class="q">${qi+1}. ${esc(q.q)}</div><div class="opts" data-q="${qi}">${q.o.map((o,oi)=>`<button class="opt" data-act="gAns" data-q="${qi}" data-i="${oi}">${esc(o)}</button>`).join("")}</div>`).join("")}
+    ${GL.qs.map((q,qi)=>`<div class="q">${qi+1}. ${esc(q.q)}</div><div class="opts">${q.opts.map((o,oi)=>`<button class="opt" data-act="gAns" data-q="${qi}" data-i="${oi}">${IT(o.t)}</button>`).join("")}</div>`).join("")}
     <div class="fb" id="gfb" aria-live="polite"></div></div>`;
+  $("#main").focus({preventScroll:true}); window.scrollTo(0,0);
 }
 
 /* --- Phrases --- */
 VIEWS.phrases = m => {
-  m.innerHTML = `<h2>Užitečné fráze · ${S.level}</h2><p class="sub">Klikněte na 🔊 a poslechněte si výslovnost.</p>
-    <div class="card">${PHRASES[S.level].map(p=>`<div class="phrase"><div><b>${esc(p[0])}</b><span>${esc(p[1])}</span></div>
-      <button class="btn ghost speak" data-act="say" data-t="${esc(p[0])}" aria-label="Přehrát">🔊</button></div>`).join("")}</div>`;
+  m.innerHTML = `<h2>Užitečné fráze · ${S.level}</h2><p class="sub">Klikněte na 🔊 a poslechněte si výslovnost (pokud ji váš prohlížeč umí).</p>
+    <div class="card">${PHRASES[S.level].map(p=>`<div class="phrase"><div><b>${IT(p[0])}</b><span class="cz">${esc(p[1])}</span></div>${spBtn(p[0])}</div>`).join("")}</div>`;
 };
 
 /* ============ EVENTS ============ */
+let resetArmed = false;
 document.addEventListener("click", e => {
   const el = e.target.closest("[data-act]"); if (!el) return;
   const d = el.dataset, m = $("#main");
   switch (d.act){
     case "go": go(d.v); break;
-    case "changeLevel": view = "home"; renderNav(); const keep = S.level; S.level = null; levelPicker(m); S.level = keep; renderNav(); break;
-    case "pick": S.level = d.l; save(); go("home"); break;
-    case "placement": PT = {i:0, score:0}; placementStep(m); break;
-    case "ptAns": if (+d.i === PLACEMENT[PT.i].a) PT.score++; PT.i++; placementStep(m); break;
+    case "changeLevel": view = "home"; renderNav(); levelPicker(m, S.level); m.focus({preventScroll:true}); break;
+    case "pick": if (!has(LEVELS,d.l)) break; S.level = d.l; save(); go("home"); break;
+    case "placement":
+      PT = {i:0, bands:{A1:0,A2:0,B1:0,B2:0}, items:PLACEMENT.map(([lvl,q,c,...w]) => ({lvl, ...mcq([q,c,...w])}))};
+      placementStep(m); break;
+    case "ptAns": { const q = PT.items[PT.i]; if (q.opts[+d.i].ok) PT.bands[q.lvl]++; PT.i++; placementStep(m); break; }
     case "ptSkip": PT.i++; placementStep(m); break;
     case "say": speak(d.t); break;
-    case "flip": CShow = !CShow; drawCard(); break;
-    case "cardYes": S.known[CQ[0].id] = true; CQ.shift(); CShow = false; addXP(1); drawCard(); break;
-    case "cardNo": CQ.push(CQ.shift()); CShow = false; drawCard(); break;
-    case "resetKnown": wordsOf(S.level).forEach(w => delete S.known[w.id]); save(); go("cards"); break;
+    case "flip": flipCard(); break;
+    case "cardYes": { const w = CQ.shift(); CShow = false; setMastery(w.id, Math.max(2, S.mastery[w.id]||0)); drawCard(); break; }
+    case "cardNo": { const w = CQ.shift(); CQ.push(w); CShow = false; bump(w.id,false); drawCard(); break; }
+    case "resetKnown": wordsOf(S.level).forEach(w => delete S.mastery[w.id]); save(); go("cards"); break;
+    case "resetAll":
+      if (!resetArmed){ resetArmed = true; el.textContent = "Opravdu smazat? Klikněte znovu"; setTimeout(() => { resetArmed = false; if (el.isConnected) el.textContent = "Smazat veškerý pokrok"; }, 4000); break; }
+      resetArmed = false; S = Object.assign(defaults(), {level:S.level}); save(); go("home"); break;
     case "qAns": {
       const c = Q.cur, ok = +d.i === c.correct;
       document.querySelectorAll(".opt").forEach((b,i) => { b.disabled = true; if (i===c.correct) b.classList.add("ok"); });
       if (ok) Q.score++; else el.classList.add("bad");
+      bump(c.w.id, ok);
       const fb = $(".fb"); fb.className = "fb " + (ok?"ok":"bad");
-      fb.innerHTML = (ok?"Správně! ":"Ne tak docela. ") + `<em>${esc(c.w.it)}</em> = ${esc(c.w.cs)}<br><span class="sub" style="font-weight:400;font-style:italic">${esc(c.w.ex)}</span> <button class="btn" data-act="qNext" style="margin-left:8px">Dál →</button>`;
-      speak(c.w.it); break;
+      fb.innerHTML = (ok?"Správně! ":"Ne tak docela. ") + `${IT(c.w.full)} = ${esc(c.w.cs)}<br><span class="sub" style="font-weight:400;font-style:italic">${IT(c.w.ex)}</span> ${spBtn(c.w.full)} <button class="btn" data-act="qNext" style="margin-left:8px">${Q.i+1>=Q.items.length?"Výsledek":"Dál"} →</button>`;
+      $("[data-act=qNext]").focus(); break;
     }
-    case "qNext": Q.i++; quizStep(); break;
+    case "qNext": Q.i++; quizStep(); $("#main").focus({preventScroll:true}); break;
     case "wNext": W.i++; writeStep(); break;
     case "lesson": lessonView(+d.i); break;
     case "gAns": {
-      const q = GRAMMAR[S.level][GL.i].quiz[+d.q], ok = +d.i === q.a;
-      const group = el.parentElement.querySelectorAll(".opt");
-      group.forEach((b,i) => { b.disabled = true; if (i===q.a) b.classList.add("ok"); });
+      const q = GL.qs[+d.q], ok = q.opts[+d.i].ok;
+      el.parentElement.querySelectorAll(".opt").forEach((b,i) => { b.disabled = true; if (q.opts[i].ok) b.classList.add("ok"); });
       if (!ok) el.classList.add("bad"); else GL.correct++;
-      if (++GL.answered === GL.total){
-        const fb = $("#gfb"); fb.className = "fb " + (GL.correct===GL.total?"ok":"bad");
-        const first = !S.grammarDone[S.level+GL.i];
-        if (GL.correct >= 2) S.grammarDone[S.level+GL.i] = true;
-        fb.textContent = `Hotovo: ${GL.correct} / ${GL.total}` + (first ? ` · +${GL.correct*5} XP` : "");
-        if (first) addXP(GL.correct*5); else save();
+      if (++GL.answered === GL.qs.length){
+        const total = GL.qs.length, pass = GL.correct >= total-1, fb = $("#gfb"), first = !S.grammarDone[GL.key];
+        fb.className = "fb " + (pass?"ok":"bad");
+        if (pass){
+          fb.textContent = `Splněno: ${GL.correct} / ${total}` + (first ? ` · +${GL.correct*5} XP` : "");
+          lessonDone(GL.key, GL.correct);
+        } else {
+          fb.innerHTML = `Zatím ${GL.correct} / ${total}. Zkuste to znovu: <button class="btn small" data-act="lesson" data-i="${GL.i}">Zkusit znovu</button>`;
+        }
       }
       break;
     }
   }
 });
 document.addEventListener("keydown", e => {
-  if ((e.key==="Enter"||e.key===" ") && e.target.matches('.arch[data-act="flip"]')){ e.preventDefault(); CShow = !CShow; drawCard(); }
+  if ((e.key==="Enter"||e.key===" ") && e.target.matches('.arch[data-act="flip"]')){ e.preventDefault(); flipCard(); }
 });
 document.addEventListener("submit", e => {
   if (e.target.id !== "wform") return;
   e.preventDefault();
   if (W.checked) return;
+  const raw = $("#winp").value, ans = norm(raw), fb = $("#wfb");
+  if (!ans){ fb.className = "fb bad"; fb.textContent = "Napište odpověď."; return; }
   W.checked = true;
-  const w = W.items[W.i], ok = norm($("#winp").value) === norm(w.it);
+  const w = W.items[W.i], pool = wordsOf(S.level);
+  let ok = ans === norm(w.it) || ans === norm(w.full), alt = null;
+  if (!ok){
+    alt = pool.find(x => x.id !== w.id && (ans === norm(x.it) || ans === norm(x.full)) && sameMeaning(x,w));
+    ok = !!alt;
+  }
   if (ok) W.score++;
+  bump(w.id, ok);
   $("#winp").disabled = true;
-  const fb = $("#wfb"); fb.className = "fb " + (ok?"ok":"bad");
-  fb.innerHTML = (ok?"Perfetto! ":"Správně je: ") + `<em>${esc(w.it)}</em> <button class="btn" type="button" data-act="wNext" style="margin-left:8px">Dál →</button>`;
-  speak(w.it);
+  const lc = raw.trim().toLowerCase(), accentNote = ok && !alt && lc !== w.it && lc !== w.full && lc.replace(/[’‘`´]/g,"'") !== w.full;
+  fb.className = "fb " + (ok?"ok":"bad");
+  fb.innerHTML = (ok ? (alt ? `Také správně! (${IT(alt.full)}). Hledané slovo bylo ` : "Perfetto! ") : "Správně je: ") + `${IT(w.full)}` +
+    (accentNote ? `<br><span class="sub" style="font-weight:400">Pozor na přízvuk / psaní: ${IT(w.full)}</span>` : "") +
+    ` ${spBtn(w.full)} <button class="btn" type="button" data-act="wNext" style="margin-left:8px">${W.i+1>=W.items.length?"Výsledek":"Dál"} →</button>`;
+  $("[data-act=wNext]").focus();
 });
 
 /* ============ START ============ */
+if (speechOK){ speechSynthesis.onvoiceschanged = loadVoices; setTimeout(() => { voicesFinal = true; loadVoices(); }, 1500); }
+loadVoices();
 renderStats(); go("home");
 </script>
 </body>
