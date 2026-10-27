@@ -8,7 +8,7 @@ Interaktivní aplikace pro výuku italštiny v češtině. Po zadání pokročil
 - 📖 **Gramatika** – krátké lekce s procvičením
 - 💬 **Fráze** – užitečné věty s přehráním výslovnosti
 - ⭐ XP za nově naučená slova a lekce, 🔥 série dnů a uložený pokrok (v prohlížeči)
-- Po 40 slovíčkách, 4 lekcích a 6 frázích na každou úroveň (A1–C1); fonty jsou součástí repozitáře, žádné externí požadavky
+- Po 100 slovíčkách, 8 lekcích gramatiky a 12 frázích na každou úroveň (A1–C1); fonty jsou součástí repozitáře, žádné externí požadavky
 
 ## Spuštění
 
